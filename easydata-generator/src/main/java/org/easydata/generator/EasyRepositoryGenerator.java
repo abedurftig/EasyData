@@ -1,9 +1,11 @@
 package org.easydata.generator;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.csv.CSVRecord;
@@ -11,6 +13,7 @@ import org.easydata.model.EasyCSVRepository;
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyField;
 import org.easydata.model.EasyModel;
+import org.easydata.model.EasyRepository;
 import org.easydata.model.EasyType;
 
 import com.sun.codemodel.JClass;
@@ -20,11 +23,15 @@ import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JExpr;
 import com.sun.codemodel.JExpression;
 import com.sun.codemodel.JFieldVar;
+import com.sun.codemodel.JForLoop;
 import com.sun.codemodel.JMethod;
 import com.sun.codemodel.JMod;
 import com.sun.codemodel.JPackage;
 import com.sun.codemodel.JType;
 import com.sun.codemodel.JVar;
+import com.sun.codemodel.JWhileLoop;
+
+import your.domain.data.Address;
 
 public class EasyRepositoryGenerator extends EasyCodeGenerator {
 
@@ -37,11 +44,14 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
     };
 	
 	private JCodeModel _cm = null;
+	private EasyModel _em = null;
 	
 	@Override
 	public void generateCode(EasyModel model, JCodeModel codeModel) {
 
 		this._cm = codeModel;
+		this._em = model;
+		
 		JPackage pkg = codeModel._package(_MODEL_PACKAGE_NAME);
 		
 		try {
@@ -50,18 +60,15 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 				addClass(clazz, pkg);
 			}
 			
+			addRepositoriesClass();
+			
 		} catch (JClassAlreadyExistsException jcae) {}
 		
 	}
 	
 	private void addClass(EasyClass clazz, JPackage pkg) throws JClassAlreadyExistsException {
-		
-		String suffix = "s";
-		if (clazz.targetClassName.endsWith("s")) {
-			suffix = "es";
-		}
-		
-		String name = clazz.targetClassName + suffix;
+
+		String name = clazz.targetClassName + getPluralSuffix(clazz);
 		
 		JDefinedClass jc = pkg._class(name);
 		
@@ -163,10 +170,10 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 			._throw(JExpr._new(this._cm.ref(IllegalArgumentException.class)).arg("item key value cannot be null or empty!"));
 		
 		add.body()
-		._if(map.invoke("containsKey").arg(param.invoke("getKeyValue")).not())
-		._then()
-			.add(map.invoke("put").arg(param.invoke("getKeyValue")).arg(param))
-			._return(JExpr.TRUE);
+			._if(map.invoke("containsKey").arg(param.invoke("getKeyValue")).not())
+			._then()
+				.add(map.invoke("put").arg(param.invoke("getKeyValue")).arg(param))
+				._return(JExpr.TRUE);
 					
 		add.body()._return(JExpr.FALSE);
 		
@@ -192,6 +199,67 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 		JMethod size = jc.method(JMod.PUBLIC, this._cm.INT, "size");
 		size.body()._return(map.invoke("size"));
 		
+	}
+	
+	private void addRepositoriesClass() throws JClassAlreadyExistsException {
+		
+		JDefinedClass repos = this._cm._package(_MODEL_PACKAGE_NAME)._class("Repositories");
+		
+		JType jtype = this._cm.ref(java.util.Map.class).narrow(
+				this._cm.ref(Class.class).narrow(this._cm.wildcard()),
+				this._cm.ref(EasyRepository.class).narrow(this._cm.wildcard())
+		);
+		
+		JClass jtypeImpl = this._cm.ref(java.util.HashMap.class).narrow(
+				this._cm.ref(Class.class).narrow(this._cm.wildcard()),
+				this._cm.ref(EasyRepository.class).narrow(this._cm.wildcard())
+		);
+		
+		JFieldVar jField = repos.field(JMod.PRIVATE | JMod.STATIC, jtype, "REPOS");
+		jField.init(JExpr._new(jtypeImpl));
+		
+		// init method
+		JMethod init = repos.method(JMod.PUBLIC | JMod.STATIC, this._cm.VOID, "init");
+		JVar param = init.param(String.class, "path");
+		init._throws(IOException.class);
+		
+		for (EasyClass clazz : this._em.classes) {
+			
+			String name = clazz.targetClassName + getPluralSuffix(clazz);
+			init.body().add(jField.invoke("put")
+					.arg(JExpr.dotclass(this._cm.ref(name)))
+					.arg(JExpr._new(this._cm.ref(name))));
+			
+		}
+		
+		JClass repo = this._cm.ref(Iterator.class).narrow(this._cm.ref(EasyRepository.class).narrow(this._cm.wildcard()));;
+		init.body().decl(repo, "iter", JExpr.ref("REPOS").invoke("values").invoke("iterator"));
+		
+		JWhileLoop loop = init.body()._while(JExpr.ref("iter").invoke("hasNext"));
+		JVar repoVar = loop.body().decl(this._cm.ref(EasyRepository.class).narrow(this._cm.wildcard()), "repo", JExpr.ref("iter").invoke("next"));
+		loop.body().add(repoVar.invoke("init").arg(param));
+		
+		for (EasyClass clazz : this._em.classes) {
+			addGetRepositoryMethod(clazz, repos);
+		}
+		
+	}
+	
+	private void addGetRepositoryMethod(EasyClass clazz, JDefinedClass genClass) {
+		
+		String name = clazz.targetClassName + getPluralSuffix(clazz);
+		JClass returnType = this._cm.ref(name);
+		
+		JMethod get = genClass.method(JMod.PUBLIC | JMod.STATIC, returnType, "get" + name + "Repo");
+		get.body()._return(JExpr._null());
+	}
+	
+	private String getPluralSuffix(EasyClass clazz) {
+		String suffix = "s";
+		if (clazz.targetClassName.endsWith("s")) {
+			suffix = "es";
+		}
+		return suffix;
 	}
 
 }
