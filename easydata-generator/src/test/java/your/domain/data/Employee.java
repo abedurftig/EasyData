@@ -15,12 +15,12 @@ public class Employee
 {
 
     private String PublicID;
-    private Date DateOfBirth;
+    private String AddressID;
     private String BossID;
+    private String LastName;
     private Integer NoOfChildren;
     private String FirstName;
-    private String AddressID;
-    private String LastName;
+    private Date DateOfBirth;
 
     /**
      * Returns the PublicID.
@@ -43,23 +43,23 @@ public class Employee
     }
 
     /**
-     * Returns the DateOfBirth.
+     * Returns the AddressID.
      * 
      * @return
-     *     DateOfBirth
+     *     AddressID
      */
-    public Date getDateOfBirth() {
-        return DateOfBirth;
+    public String getAddressID() {
+        return AddressID;
     }
 
     /**
-     * Set the DateOfBirth.
+     * Set the AddressID.
      * 
-     * @param DateOfBirth
-     *     the new DateOfBirth
+     * @param AddressID
+     *     the new AddressID
      */
-    public void setDateOfBirth(Date DateOfBirth) {
-        this.DateOfBirth = DateOfBirth;
+    public void setAddressID(String AddressID) {
+        this.AddressID = AddressID;
     }
 
     /**
@@ -80,6 +80,26 @@ public class Employee
      */
     public void setBossID(String BossID) {
         this.BossID = BossID;
+    }
+
+    /**
+     * Returns the LastName.
+     * 
+     * @return
+     *     LastName
+     */
+    public String getLastName() {
+        return LastName;
+    }
+
+    /**
+     * Set the LastName.
+     * 
+     * @param LastName
+     *     the new LastName
+     */
+    public void setLastName(String LastName) {
+        this.LastName = LastName;
     }
 
     /**
@@ -123,43 +143,23 @@ public class Employee
     }
 
     /**
-     * Returns the AddressID.
+     * Returns the DateOfBirth.
      * 
      * @return
-     *     AddressID
+     *     DateOfBirth
      */
-    public String getAddressID() {
-        return AddressID;
+    public Date getDateOfBirth() {
+        return DateOfBirth;
     }
 
     /**
-     * Set the AddressID.
+     * Set the DateOfBirth.
      * 
-     * @param AddressID
-     *     the new AddressID
+     * @param DateOfBirth
+     *     the new DateOfBirth
      */
-    public void setAddressID(String AddressID) {
-        this.AddressID = AddressID;
-    }
-
-    /**
-     * Returns the LastName.
-     * 
-     * @return
-     *     LastName
-     */
-    public String getLastName() {
-        return LastName;
-    }
-
-    /**
-     * Set the LastName.
-     * 
-     * @param LastName
-     *     the new LastName
-     */
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
+    public void setDateOfBirth(Date DateOfBirth) {
+        this.DateOfBirth = DateOfBirth;
     }
 
     public String getKeyValue() {

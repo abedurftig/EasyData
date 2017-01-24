@@ -20,8 +20,8 @@ public class Repositories {
     public static void init(String path)
         throws IOException
     {
-        REPOS.put(Employees.class, new Employees());
         REPOS.put(Bosses.class, new Bosses());
+        REPOS.put(Employees.class, new Employees());
         REPOS.put(Addresses.class, new Addresses());
         Iterator<EasyRepository<?>> iter = REPOS.values().iterator();
         while (iter.hasNext()) {
