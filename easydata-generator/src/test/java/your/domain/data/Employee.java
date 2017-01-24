@@ -18,9 +18,9 @@ public class Employee
     private String FirstName;
     private String BossID;
     private Integer NoOfChildren;
-    private String LastName;
     private String AddressID;
     private Date DateOfBirth;
+    private String LastName;
 
     /**
      * Returns the PublicID.
@@ -103,26 +103,6 @@ public class Employee
     }
 
     /**
-     * Returns the LastName.
-     * 
-     * @return
-     *     LastName
-     */
-    public String getLastName() {
-        return LastName;
-    }
-
-    /**
-     * Set the LastName.
-     * 
-     * @param LastName
-     *     the new LastName
-     */
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
-    }
-
-    /**
      * Returns the AddressID.
      * 
      * @return
@@ -160,6 +140,26 @@ public class Employee
      */
     public void setDateOfBirth(Date DateOfBirth) {
         this.DateOfBirth = DateOfBirth;
+    }
+
+    /**
+     * Returns the LastName.
+     * 
+     * @return
+     *     LastName
+     */
+    public String getLastName() {
+        return LastName;
+    }
+
+    /**
+     * Set the LastName.
+     * 
+     * @param LastName
+     *     the new LastName
+     */
+    public void setLastName(String LastName) {
+        this.LastName = LastName;
     }
 
     public String getKeyValue() {

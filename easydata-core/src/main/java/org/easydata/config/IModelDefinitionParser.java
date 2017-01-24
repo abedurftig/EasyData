@@ -1,7 +1,9 @@
-package org.easydata.model;
+package org.easydata.config;
 
 import java.io.File;
 import java.io.IOException;
+
+import org.easydata.model.EasyModel;
 
 public interface IModelDefinitionParser {
 

@@ -5,7 +5,7 @@ import java.text.ParseException;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import org.apache.commons.csv.CSVRecord;
-import org.easydata.model.EasyCSVRepository;
+import org.easydata.access.EasyCSVRepository;
 
 
 /**

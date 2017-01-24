@@ -9,11 +9,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.csv.CSVRecord;
-import org.easydata.model.EasyCSVRepository;
+import org.easydata.access.EasyCSVRepository;
+import org.easydata.access.EasyRepository;
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyField;
 import org.easydata.model.EasyModel;
-import org.easydata.model.EasyRepository;
 import org.easydata.model.EasyType;
 
 import com.sun.codemodel.JClass;

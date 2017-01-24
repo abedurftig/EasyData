@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
+import org.easydata.config.JSONModelDefinitionParser;
 import org.easydata.model.EasyModel;
-import org.easydata.model.impl.JSONModelDefinitionParser;
 import org.junit.Test;
 
 import com.sun.codemodel.JCodeModel;

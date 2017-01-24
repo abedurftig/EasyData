@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import org.easydata.model.EasyRepository;
+import org.easydata.access.EasyRepository;
 
 
 /**

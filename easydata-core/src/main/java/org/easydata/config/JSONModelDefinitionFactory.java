@@ -1,4 +1,4 @@
-package org.easydata.model.impl;
+package org.easydata.config;
 
 import static org.easydata.util.EasyLogger.getEasyLogger;
 
@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyModel;
-import org.easydata.model.IModelDefinitionFactory;
 import org.easydata.util.EasyObjectMapper;
 
 public class JSONModelDefinitionFactory implements IModelDefinitionFactory {

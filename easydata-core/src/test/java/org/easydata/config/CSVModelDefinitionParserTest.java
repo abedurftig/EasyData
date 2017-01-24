@@ -1,4 +1,4 @@
-package org.easydata.model.impl;
+package org.easydata.config;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,9 +7,10 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
+import org.easydata.config.CSVModelDefinitionParser;
+import org.easydata.config.IModelDefinitionParser;
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyModel;
-import org.easydata.model.IModelDefinitionParser;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

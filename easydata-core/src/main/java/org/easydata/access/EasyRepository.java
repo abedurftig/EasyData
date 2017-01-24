@@ -1,6 +1,8 @@
-package org.easydata.model;
+package org.easydata.access;
 
 import java.io.IOException;
+
+import org.easydata.model.EasyPojo;
 
 public abstract class EasyRepository<P extends EasyPojo> {
 	

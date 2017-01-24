@@ -1,4 +1,4 @@
-package org.easydata.model.impl;
+package org.easydata.config;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,7 +8,6 @@ import java.io.IOException;
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyField;
 import org.easydata.model.EasyModel;
-import org.easydata.model.IModelDefinitionParser;
 import org.easydata.util.FileFilters;
 
 public class CSVModelDefinitionParser implements IModelDefinitionParser {

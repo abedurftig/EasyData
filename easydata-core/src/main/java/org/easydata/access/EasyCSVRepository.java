@@ -1,4 +1,4 @@
-package org.easydata.model;
+package org.easydata.access;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,6 +8,7 @@ import java.util.Iterator;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.easydata.model.EasyPojo;
 
 public abstract class EasyCSVRepository<P extends EasyPojo> extends EasyRepository<P> {
 
