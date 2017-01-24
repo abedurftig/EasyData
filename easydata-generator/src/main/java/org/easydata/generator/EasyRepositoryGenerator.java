@@ -23,15 +23,12 @@ import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JExpr;
 import com.sun.codemodel.JExpression;
 import com.sun.codemodel.JFieldVar;
-import com.sun.codemodel.JForLoop;
 import com.sun.codemodel.JMethod;
 import com.sun.codemodel.JMod;
 import com.sun.codemodel.JPackage;
 import com.sun.codemodel.JType;
 import com.sun.codemodel.JVar;
 import com.sun.codemodel.JWhileLoop;
-
-import your.domain.data.Address;
 
 public class EasyRepositoryGenerator extends EasyCodeGenerator {
 
@@ -239,19 +236,17 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 		JVar repoVar = loop.body().decl(this._cm.ref(EasyRepository.class).narrow(this._cm.wildcard()), "repo", JExpr.ref("iter").invoke("next"));
 		loop.body().add(repoVar.invoke("init").arg(param));
 		
-		for (EasyClass clazz : this._em.classes) {
-			addGetRepositoryMethod(clazz, repos);
-		}
+		// get method
+		JType genericType = this._cm.directClass("T");
+		JMethod get = repos.method(JMod.PUBLIC | JMod.STATIC, genericType, "get");
 		
-	}
-	
-	private void addGetRepositoryMethod(EasyClass clazz, JDefinedClass genClass) {
+		JClass genericClass = this._cm.ref(EasyRepository.class).narrow(this._cm.wildcard());
 		
-		String name = clazz.targetClassName + getPluralSuffix(clazz);
-		JClass returnType = this._cm.ref(name);
+		get.generify("T", genericClass);
+        JClass parameterType = this._cm.ref(Class.class).narrow(genericType);
+        JVar getParam = get.param(parameterType, "type");
+        get.body()._return(getParam.invoke("cast").arg(JExpr.ref("REPOS").invoke("get").arg(getParam)));
 		
-		JMethod get = genClass.method(JMod.PUBLIC | JMod.STATIC, returnType, "get" + name + "Repo");
-		get.body()._return(JExpr._null());
 	}
 	
 	private String getPluralSuffix(EasyClass clazz) {
