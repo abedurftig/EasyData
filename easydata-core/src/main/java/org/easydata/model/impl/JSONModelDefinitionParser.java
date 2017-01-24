@@ -38,7 +38,8 @@ public class JSONModelDefinitionParser implements IModelDefinitionParser {
 					if (other.hasRefTo(clazz.targetClassName)) {
 						clazz.relations.add(new EasyRelation(RelationType.BI_DI_ONE_TO_ONE, other.targetClassName));
 					} else {
-						clazz.relations.add(new EasyRelation(RelationType.ONE_TO_MANY, other.targetClassName));
+						other.relations.add(new EasyRelation(RelationType.ONE_TO_MANY, clazz.targetClassName));
+						clazz.relations.add(new EasyRelation(RelationType.MANY_TO_ONE, other.targetClassName));
 					}
 				} else {
 					new IllegalStateException("class " + clazz.targetClassName + "references class " +

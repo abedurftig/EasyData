@@ -1,4 +1,4 @@
-package org.easydata.model.test;
+package org.easydata.builder;
 
 import org.easydata.model.EasyRelation;
 import org.easydata.model.EasyRelation.RelationType;

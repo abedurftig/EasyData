@@ -31,6 +31,8 @@ public abstract class EasyCSVRepository<P extends EasyPojo> extends EasyReposito
 				
 			}
 			
+			populateReferenceIndices();
+			
 			
 		} catch (ParseException pe) {
 			

@@ -12,4 +12,6 @@ public abstract class EasyRepository<P extends EasyPojo> {
 	
 	public abstract void init(String path) throws IOException;
 	
+	protected abstract void populateReferenceIndices();
+	
 }

@@ -1,15 +1,14 @@
 package org.easydata.model.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
+import org.easydata.builder.EasyClassBuilder;
+import org.easydata.builder.EasyFieldBuilder;
+import org.easydata.builder.EasyModelBuilder;
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyModel;
 import org.easydata.model.EasyRelation;
 import org.easydata.model.EasyRelation.RelationType;
-import org.easydata.model.test.EasyClassBuilder;
-import org.easydata.model.test.EasyFieldBuilder;
-import org.easydata.model.test.EasyModelBuilder;
 import org.junit.Test;
 
 public class JSONModelDefinitionParserTest {
@@ -17,6 +16,7 @@ public class JSONModelDefinitionParserTest {
 	@Test
 	public void addRelationshipsOneToMany() {
 		
+		// arrange
 		EasyFieldBuilder fb1 = new EasyFieldBuilder().create()
 				.withTargetName("Id")
 				.makeKey();
@@ -43,28 +43,32 @@ public class JSONModelDefinitionParserTest {
 				.withEasyClass(c2)
 				.get();
 		
-		// want to test this one later
 		EasyClass emp = c1.get();
 		EasyClass add = c2.get();
 		
 		// act
-		JSONModelDefinitionParser parser = new JSONModelDefinitionParser();
-		parser.addRelationships(em);
+		new JSONModelDefinitionParser().addRelationships(em);
 		
+		// assert
 		assertEquals("should have relation", 1, add.relations.size());
+		assertEquals("should have relation", 1, emp.relations.size());
 		
 		EasyRelation r1 = add.relations.iterator().next();
 		
-		assertEquals("should be one to many", RelationType.ONE_TO_MANY, r1.getType());
+		assertEquals("should be one to many", RelationType.MANY_TO_ONE, r1.getType());
 		assertEquals("should point to class", "Employee", r1.getTo());
 		
-		assertTrue("should be empty", emp.relations.isEmpty());
+		EasyRelation r2 = emp.relations.iterator().next();
+		
+		assertEquals("should be one to many", RelationType.ONE_TO_MANY, r2.getType());
+		assertEquals("should point to class", "Address", r2.getTo());
 		
 	}
 	
 	@Test
 	public void addRelationshipsOneToOne() {
 		
+		// arrange
 		EasyFieldBuilder fb1 = new EasyFieldBuilder().create()
 				.withTargetName("Id")
 				.makeKey();
@@ -96,14 +100,13 @@ public class JSONModelDefinitionParserTest {
 				.withEasyClass(c2)
 				.get();
 		
-		// want to test this one later
 		EasyClass emp = c1.get();
 		EasyClass add = c2.get();
 		
 		// act
-		JSONModelDefinitionParser parser = new JSONModelDefinitionParser();
-		parser.addRelationships(em);
+		new JSONModelDefinitionParser().addRelationships(em);
 		
+		// assert
 		assertEquals("should have relation", 1, add.relations.size());
 		
 		EasyRelation r1 = add.relations.iterator().next();
@@ -113,7 +116,7 @@ public class JSONModelDefinitionParserTest {
 		
 		assertEquals("should have relation", 1, emp.relations.size());
 		
-		EasyRelation r2 = add.relations.iterator().next();
+		EasyRelation r2 = emp.relations.iterator().next();
 		
 		assertEquals("should be one to many", RelationType.BI_DI_ONE_TO_ONE, r2.getType());
 		assertEquals("should point to class", "Address", r2.getTo());

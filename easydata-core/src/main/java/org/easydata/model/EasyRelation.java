@@ -3,7 +3,7 @@ package org.easydata.model;
 public class EasyRelation extends EasyObj {
 
 	public static enum RelationType {
-		ONE_TO_ONE, ONE_TO_MANY, BI_DI_ONE_TO_ONE
+		ONE_TO_ONE, ONE_TO_MANY, BI_DI_ONE_TO_ONE, MANY_TO_ONE
 	}
 	
 	private RelationType _type = null;
