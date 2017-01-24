@@ -1,0 +1,48 @@
+{
+  "fileName" : "EMPLOYEE.CSV",
+  "targetClassName" : "Employee",
+  "fields" : [ {
+    "index" : 0,
+    "key" : true,
+    "targetFieldName" : "PublicID",
+    "type" : "text"
+  },
+  {
+    "index" : 1,
+    "key" : false,
+    "targetFieldName" : "FirstName",
+    "type" : "text"
+  },
+  {
+    "index" : 2,
+    "key" : false,
+    "targetFieldName" : "LastName",
+    "type" : "text"
+  },
+  {
+    "index" : 3,
+    "key" : false,
+    "targetFieldName" : "DateOfBirth",
+    "type" : "date"
+  }, 
+  {
+    "index" : 4,
+    "key" : false,
+    "targetFieldName" : "AddressID",
+    "type" : "text",
+    "ref" : "Address"
+  }, 
+  {
+    "index" : 5,
+    "key" : false,
+    "targetFieldName" : "NoOfChildren",
+    "type" : "int"
+  }, 
+  {
+    "index" : 6,
+    "key" : false,
+    "targetFieldName" : "BossID",
+    "type" : "text",
+    "ref" : "Boss"
+  } ]
+}

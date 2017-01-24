@@ -1,0 +1,16 @@
+{
+  "fileName" : "EMPLOYEE.CSV",
+  "targetClassName" : "Employee",
+  "fields" : [ {
+    "index" : 0,
+    "key" : true,
+    "targetFieldName" : "PublicID",
+    "type" : "text"
+  }, {
+    "index" : 1,
+    "key" : false,
+    "targetFieldName" : "AddressID",
+    "type" : "text",
+    "ref" : "Address"
+  } ]
+}
