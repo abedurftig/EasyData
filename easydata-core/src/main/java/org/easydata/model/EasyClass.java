@@ -13,6 +13,18 @@ public class EasyClass extends EasyObj {
 	@JsonIgnore
 	public Set<EasyRelation> relations = new HashSet<EasyRelation>();
 
+	public Set<EasyRelation> getManyToOneRelations() {
+		
+		Set<EasyRelation> rels = new HashSet<EasyRelation>();
+		for (EasyRelation relation : relations) {
+			if (relation.getType().equals(EasyRelation.RelationType.MANY_TO_ONE)) {
+				rels.add(relation);
+			}
+		}
+		return rels;
+		
+	}
+	
 	public EasyField getKeyField() {
 		
 		for (EasyField field : fields) {

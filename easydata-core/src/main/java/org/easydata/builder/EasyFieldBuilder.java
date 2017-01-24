@@ -1,6 +1,7 @@
 package org.easydata.builder;
 
 import org.easydata.model.EasyField;
+import org.easydata.model.EasyType;
 
 public class EasyFieldBuilder implements IEasyModelBuilder<EasyField, EasyFieldBuilder> {
 
@@ -30,6 +31,13 @@ public class EasyFieldBuilder implements IEasyModelBuilder<EasyField, EasyFieldB
 	public EasyFieldBuilder withRef(String ref) {
 		
 		this._field.ref = ref;
+		return this;
+		
+	}
+	
+	public EasyFieldBuilder withType(EasyType type) {
+		
+		this._field.type = type.getType();
 		return this;
 		
 	}

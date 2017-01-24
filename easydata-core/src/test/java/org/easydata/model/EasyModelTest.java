@@ -1,31 +1,50 @@
 package org.easydata.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
+import org.easydata.builder.EasyClassBuilder;
+import org.easydata.builder.EasyModelBuilder;
 import org.junit.Test;
 
-public class EasyModelTest extends EasyTestBase {
+public class EasyModelTest {
 	
 	@Test
 	public void numberOfClasses() {
 		
-		assertEquals("Expect two classes", 2, getModel().classes.size());
+		EasyClassBuilder c1 = new EasyClassBuilder().create()
+				.withClassName("Employee");
+		
+		EasyClassBuilder c2 = new EasyClassBuilder().create()
+				.withClassName("Address");
+		
+		EasyModel em = new EasyModelBuilder().create()
+				.withEasyClass(c1)
+				.withEasyClass(c2)
+				.get();
+		
+		assertEquals("Expect two classes", 2, em.classes.size());
 		
 	}
 	
 	@Test
 	public void getClassByName() {
 		
-		EasyClass addCl = getModel().getClassByName("Address");
-		assertNotNull("EasyClass instance for 'Address' should exist", addCl);
+		EasyClassBuilder c1 = new EasyClassBuilder().create()
+				.withClassName("Employee");
 		
-		EasyClass empCl = getModel().getClassByName("Employee");
-		assertNotNull("EasyClass instance for 'Employee' should exist", empCl);
+		EasyClassBuilder c2 = new EasyClassBuilder().create()
+				.withClassName("Address");
 		
-		EasyClass noCl = getModel().getClassByName("NotExisting");
-		assertNull("EasyClass instance for 'NotExisting' should not exist", noCl);
+		EasyModel em = new EasyModelBuilder().create()
+				.withEasyClass(c1)
+				.withEasyClass(c2)
+				.get();
+		
+		EasyClass clAddress = em.getClassByName("Address");
+		assertEquals("targetClassName should be different", "Address", clAddress.targetClassName);
+		
+		EasyClass clEmployee = em.getClassByName("Employee");
+		assertEquals("targetClassName should be different", "Employee", clEmployee.targetClassName);
 		
 	}
 
