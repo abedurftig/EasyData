@@ -14,15 +14,11 @@ public class EasyClass extends EasyObj {
 	public Set<EasyRelation> relations = new HashSet<EasyRelation>();
 
 	public Set<EasyRelation> getManyToOneRelations() {
-		
-		Set<EasyRelation> rels = new HashSet<EasyRelation>();
-		for (EasyRelation relation : relations) {
-			if (relation.getType().equals(EasyRelation.RelationType.MANY_TO_ONE)) {
-				rels.add(relation);
-			}
-		}
-		return rels;
-		
+		return getRelationsByType(EasyRelation.RelationType.MANY_TO_ONE);
+	}
+	
+	public Set<EasyRelation> getOneToManyRelations() {
+		return getRelationsByType(EasyRelation.RelationType.ONE_TO_MANY);
 	}
 	
 	public EasyField getKeyField() {
@@ -67,6 +63,18 @@ public class EasyClass extends EasyObj {
 			}
 		}
 		return false;
+		
+	}
+	
+	private Set<EasyRelation> getRelationsByType(EasyRelation.RelationType type) {
+		
+		Set<EasyRelation> rels = new HashSet<EasyRelation>();
+		for (EasyRelation relation : relations) {
+			if (relation.getType().equals(type)) {
+				rels.add(relation);
+			}
+		}
+		return rels;
 		
 	}
 	

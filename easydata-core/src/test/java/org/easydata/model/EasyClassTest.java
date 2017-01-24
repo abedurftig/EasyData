@@ -27,6 +27,21 @@ public class EasyClassTest {
 	}
 	
 	@Test
+	public void getOneToManyRelations() {
+		
+		EasyRelationBuilder r1 = new EasyRelationBuilder()
+				.withOneToMany("Address");
+		
+		EasyClass c1 = new EasyClassBuilder().create()
+				.withClassName("Employee")
+				.withEasyRelation(r1)
+				.get();
+		
+		assertEquals("Expected different number of many-to-one relations", 1, c1.getOneToManyRelations().size());
+		
+	}
+	
+	@Test
 	public void getKeyField() {
 		
 		EasyFieldBuilder f1 = new EasyFieldBuilder()

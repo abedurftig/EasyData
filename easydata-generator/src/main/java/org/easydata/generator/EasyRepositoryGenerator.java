@@ -14,7 +14,9 @@ import org.easydata.access.EasyRepository;
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyField;
 import org.easydata.model.EasyModel;
+import org.easydata.model.EasyRelation;
 import org.easydata.model.EasyType;
+import org.easydata.util.EasyLogger;
 
 import com.sun.codemodel.JClass;
 import com.sun.codemodel.JClassAlreadyExistsException;
@@ -89,14 +91,25 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 		// add main repository
 		JFieldVar jField = addMainRepository(clazz, jc, name);
 		
+		// create indices for other objects which have a one to many to this one
+		for (EasyRelation relation : clazz.getManyToOneRelations()) {
+			createReferenceIndex(clazz, relation, jc);
+		}
+		
+		// getById method
+		addGetByIdMethod(clazz, jc, jField);
+
+		// create method to get objects from other repos which the class managed
+		// by this repo is managing
+		for (EasyRelation relation : clazz.getOneToManyRelations()) {
+			createGetter(clazz, relation, jc);
+		}
+		
 		// createFrom method
 		addCreateFromMethod(clazz, jc);
 		
 		// add method
 		addAddMethod(clazz, jc, jField);
-		
-		// getById method
-		addGetByIdMethod(clazz, jc, jField);
 		
 		// getInputFileName method
 		addGetInputFileNameMethod(clazz, jc);
@@ -108,17 +121,24 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 		addPopulateReferenceIndicesMethod(clazz, jc);
 		
 	}
+
+	private void createGetter(EasyClass clazz, EasyRelation relation, JDefinedClass jc) {
+		
+		// TODO: Implement
+		EasyLogger.getEasyLogger().warn("EasyRepositoryGenerator#createGetter has not been implemented yet!");
+		
+	}
 	
 	private JFieldVar addMainRepository(EasyClass clazz, JDefinedClass jc, String name) {
 		
 		// map holding the single items
 		JType jtype = this._cm.ref(Object2ObjectMap.class).narrow(
-				this._cm.ref(clazz.getKeyField().getJavaTypeAsString()),
+				this._cm.ref(String.class),
 				this._cm.ref(clazz.targetClassName)
 		);
 		
 		JClass jtypeImpl = this._cm.ref(Object2ObjectOpenHashMap.class).narrow(
-				this._cm.ref(clazz.getKeyField().getJavaTypeAsString()),
+				this._cm.ref(String.class),
 				this._cm.ref(clazz.targetClassName)
 		);
 		
@@ -128,6 +148,23 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 		return jField;
 		
 	}
+	
+	private void createReferenceIndex(EasyClass clazz, EasyRelation relation, JDefinedClass jc) {
+		
+		JType jtype = this._cm.ref(Object2ObjectMap.class).narrow(
+				this._cm.ref(String.class),
+				this._cm.ref(String.class)
+		);
+		
+		JClass jtypeImpl = this._cm.ref(Object2ObjectOpenHashMap.class).narrow(
+				this._cm.ref(String.class),
+				this._cm.ref(String.class)
+		);
+		
+		JFieldVar jField = jc.field(JMod.PRIVATE, jtype, relation.getTo() + clazz.targetClassName);
+		jField.init(JExpr._new(jtypeImpl));
+		
+	} 
 	
 	private void addPopulateReferenceIndicesMethod(EasyClass clazz, JDefinedClass jc) {
 		

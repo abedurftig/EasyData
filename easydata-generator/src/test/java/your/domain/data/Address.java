@@ -15,8 +15,8 @@ public class Address
 
     private String PublicID;
     private String Street;
-    private String City;
     private String HouseNumber;
+    private String City;
 
     /**
      * Returns the PublicID.
@@ -59,26 +59,6 @@ public class Address
     }
 
     /**
-     * Returns the City.
-     * 
-     * @return
-     *     City
-     */
-    public String getCity() {
-        return City;
-    }
-
-    /**
-     * Set the City.
-     * 
-     * @param City
-     *     the new City
-     */
-    public void setCity(String City) {
-        this.City = City;
-    }
-
-    /**
      * Returns the HouseNumber.
      * 
      * @return
@@ -96,6 +76,26 @@ public class Address
      */
     public void setHouseNumber(String HouseNumber) {
         this.HouseNumber = HouseNumber;
+    }
+
+    /**
+     * Returns the City.
+     * 
+     * @return
+     *     City
+     */
+    public String getCity() {
+        return City;
+    }
+
+    /**
+     * Set the City.
+     * 
+     * @param City
+     *     the new City
+     */
+    public void setCity(String City) {
+        this.City = City;
     }
 
     public String getKeyValue() {

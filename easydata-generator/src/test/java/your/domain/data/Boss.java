@@ -15,9 +15,9 @@ public class Boss
 {
 
     private String PublicID;
+    private String FirstName;
     private Date DateOfBirth;
     private String AddressID;
-    private String FirstName;
     private String LastName;
 
     /**
@@ -38,6 +38,26 @@ public class Boss
      */
     public void setPublicID(String PublicID) {
         this.PublicID = PublicID;
+    }
+
+    /**
+     * Returns the FirstName.
+     * 
+     * @return
+     *     FirstName
+     */
+    public String getFirstName() {
+        return FirstName;
+    }
+
+    /**
+     * Set the FirstName.
+     * 
+     * @param FirstName
+     *     the new FirstName
+     */
+    public void setFirstName(String FirstName) {
+        this.FirstName = FirstName;
     }
 
     /**
@@ -78,26 +98,6 @@ public class Boss
      */
     public void setAddressID(String AddressID) {
         this.AddressID = AddressID;
-    }
-
-    /**
-     * Returns the FirstName.
-     * 
-     * @return
-     *     FirstName
-     */
-    public String getFirstName() {
-        return FirstName;
-    }
-
-    /**
-     * Set the FirstName.
-     * 
-     * @param FirstName
-     *     the new FirstName
-     */
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
     }
 
     /**

@@ -19,6 +19,10 @@ public class Addresses
 
     private Object2ObjectMap<String, Address> Addresses = new Object2ObjectOpenHashMap<String, Address>();
 
+    public Address getById(String id) {
+        return this.Addresses.get(id);
+    }
+
     public Address createFrom(CSVRecord record)
         throws ParseException
     {
@@ -46,11 +50,7 @@ public class Addresses
         return false;
     }
 
-    public Address getById(java.lang.String id) {
-        return this.Addresses.get(id);
-    }
-
-    public java.lang.String getInputFileName() {
+    public String getInputFileName() {
         return "ADDRESS.CSV";
     }
 

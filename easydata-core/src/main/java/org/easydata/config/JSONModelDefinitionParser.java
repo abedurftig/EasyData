@@ -22,6 +22,7 @@ public class JSONModelDefinitionParser implements IModelDefinitionParser {
 		
 		EasyModel model = new EasyModel();
 		model.fromJSON(inputFolder);
+		addRelationships(model);
 		return model;
 		
 	}

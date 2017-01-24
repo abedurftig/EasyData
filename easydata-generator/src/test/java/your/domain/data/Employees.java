@@ -19,6 +19,12 @@ public class Employees
 {
 
     private Object2ObjectMap<String, Employee> Employees = new Object2ObjectOpenHashMap<String, Employee>();
+    private Object2ObjectMap<String, String> BossEmployee = new Object2ObjectOpenHashMap<String, String>();
+    private Object2ObjectMap<String, String> AddressEmployee = new Object2ObjectOpenHashMap<String, String>();
+
+    public Employee getById(String id) {
+        return this.Employees.get(id);
+    }
 
     public Employee createFrom(CSVRecord record)
         throws ParseException
@@ -51,11 +57,7 @@ public class Employees
         return false;
     }
 
-    public Employee getById(java.lang.String id) {
-        return this.Employees.get(id);
-    }
-
-    public java.lang.String getInputFileName() {
+    public String getInputFileName() {
         return "EMPLOYEE.CSV";
     }
 

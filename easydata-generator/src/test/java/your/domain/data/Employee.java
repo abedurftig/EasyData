@@ -15,11 +15,11 @@ public class Employee
 {
 
     private String PublicID;
-    private String FirstName;
-    private String BossID;
-    private Integer NoOfChildren;
-    private String AddressID;
     private Date DateOfBirth;
+    private String FirstName;
+    private Integer NoOfChildren;
+    private String BossID;
+    private String AddressID;
     private String LastName;
 
     /**
@@ -43,6 +43,26 @@ public class Employee
     }
 
     /**
+     * Returns the DateOfBirth.
+     * 
+     * @return
+     *     DateOfBirth
+     */
+    public Date getDateOfBirth() {
+        return DateOfBirth;
+    }
+
+    /**
+     * Set the DateOfBirth.
+     * 
+     * @param DateOfBirth
+     *     the new DateOfBirth
+     */
+    public void setDateOfBirth(Date DateOfBirth) {
+        this.DateOfBirth = DateOfBirth;
+    }
+
+    /**
      * Returns the FirstName.
      * 
      * @return
@@ -60,26 +80,6 @@ public class Employee
      */
     public void setFirstName(String FirstName) {
         this.FirstName = FirstName;
-    }
-
-    /**
-     * Returns the BossID.
-     * 
-     * @return
-     *     BossID
-     */
-    public String getBossID() {
-        return BossID;
-    }
-
-    /**
-     * Set the BossID.
-     * 
-     * @param BossID
-     *     the new BossID
-     */
-    public void setBossID(String BossID) {
-        this.BossID = BossID;
     }
 
     /**
@@ -103,6 +103,26 @@ public class Employee
     }
 
     /**
+     * Returns the BossID.
+     * 
+     * @return
+     *     BossID
+     */
+    public String getBossID() {
+        return BossID;
+    }
+
+    /**
+     * Set the BossID.
+     * 
+     * @param BossID
+     *     the new BossID
+     */
+    public void setBossID(String BossID) {
+        this.BossID = BossID;
+    }
+
+    /**
      * Returns the AddressID.
      * 
      * @return
@@ -120,26 +140,6 @@ public class Employee
      */
     public void setAddressID(String AddressID) {
         this.AddressID = AddressID;
-    }
-
-    /**
-     * Returns the DateOfBirth.
-     * 
-     * @return
-     *     DateOfBirth
-     */
-    public Date getDateOfBirth() {
-        return DateOfBirth;
-    }
-
-    /**
-     * Set the DateOfBirth.
-     * 
-     * @param DateOfBirth
-     *     the new DateOfBirth
-     */
-    public void setDateOfBirth(Date DateOfBirth) {
-        this.DateOfBirth = DateOfBirth;
     }
 
     /**

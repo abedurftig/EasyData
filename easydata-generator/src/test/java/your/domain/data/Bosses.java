@@ -19,6 +19,11 @@ public class Bosses
 {
 
     private Object2ObjectMap<String, Boss> Bosses = new Object2ObjectOpenHashMap<String, Boss>();
+    private Object2ObjectMap<String, String> AddressBoss = new Object2ObjectOpenHashMap<String, String>();
+
+    public Boss getById(String id) {
+        return this.Bosses.get(id);
+    }
 
     public Boss createFrom(CSVRecord record)
         throws ParseException
@@ -49,11 +54,7 @@ public class Bosses
         return false;
     }
 
-    public Boss getById(java.lang.String id) {
-        return this.Bosses.get(id);
-    }
-
-    public java.lang.String getInputFileName() {
+    public String getInputFileName() {
         return "BOSS.CSV";
     }
 
