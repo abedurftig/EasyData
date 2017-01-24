@@ -15,10 +15,10 @@ public class Boss
 {
 
     private String PublicID;
-    private String FirstName;
     private String AddressID;
-    private String LastName;
+    private String FirstName;
     private Date DateOfBirth;
+    private String LastName;
 
     /**
      * Returns the PublicID.
@@ -38,26 +38,6 @@ public class Boss
      */
     public void setPublicID(String PublicID) {
         this.PublicID = PublicID;
-    }
-
-    /**
-     * Returns the FirstName.
-     * 
-     * @return
-     *     FirstName
-     */
-    public String getFirstName() {
-        return FirstName;
-    }
-
-    /**
-     * Set the FirstName.
-     * 
-     * @param FirstName
-     *     the new FirstName
-     */
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
     }
 
     /**
@@ -81,23 +61,23 @@ public class Boss
     }
 
     /**
-     * Returns the LastName.
+     * Returns the FirstName.
      * 
      * @return
-     *     LastName
+     *     FirstName
      */
-    public String getLastName() {
-        return LastName;
+    public String getFirstName() {
+        return FirstName;
     }
 
     /**
-     * Set the LastName.
+     * Set the FirstName.
      * 
-     * @param LastName
-     *     the new LastName
+     * @param FirstName
+     *     the new FirstName
      */
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
+    public void setFirstName(String FirstName) {
+        this.FirstName = FirstName;
     }
 
     /**
@@ -118,6 +98,26 @@ public class Boss
      */
     public void setDateOfBirth(Date DateOfBirth) {
         this.DateOfBirth = DateOfBirth;
+    }
+
+    /**
+     * Returns the LastName.
+     * 
+     * @return
+     *     LastName
+     */
+    public String getLastName() {
+        return LastName;
+    }
+
+    /**
+     * Set the LastName.
+     * 
+     * @param LastName
+     *     the new LastName
+     */
+    public void setLastName(String LastName) {
+        this.LastName = LastName;
     }
 
     public String getKeyValue() {

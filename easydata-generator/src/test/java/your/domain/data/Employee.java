@@ -15,11 +15,11 @@ public class Employee
 {
 
     private String PublicID;
-    private String AddressID;
-    private String BossID;
-    private String LastName;
-    private Integer NoOfChildren;
     private String FirstName;
+    private String BossID;
+    private Integer NoOfChildren;
+    private String LastName;
+    private String AddressID;
     private Date DateOfBirth;
 
     /**
@@ -43,23 +43,23 @@ public class Employee
     }
 
     /**
-     * Returns the AddressID.
+     * Returns the FirstName.
      * 
      * @return
-     *     AddressID
+     *     FirstName
      */
-    public String getAddressID() {
-        return AddressID;
+    public String getFirstName() {
+        return FirstName;
     }
 
     /**
-     * Set the AddressID.
+     * Set the FirstName.
      * 
-     * @param AddressID
-     *     the new AddressID
+     * @param FirstName
+     *     the new FirstName
      */
-    public void setAddressID(String AddressID) {
-        this.AddressID = AddressID;
+    public void setFirstName(String FirstName) {
+        this.FirstName = FirstName;
     }
 
     /**
@@ -83,26 +83,6 @@ public class Employee
     }
 
     /**
-     * Returns the LastName.
-     * 
-     * @return
-     *     LastName
-     */
-    public String getLastName() {
-        return LastName;
-    }
-
-    /**
-     * Set the LastName.
-     * 
-     * @param LastName
-     *     the new LastName
-     */
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
-    }
-
-    /**
      * Returns the NoOfChildren.
      * 
      * @return
@@ -123,23 +103,43 @@ public class Employee
     }
 
     /**
-     * Returns the FirstName.
+     * Returns the LastName.
      * 
      * @return
-     *     FirstName
+     *     LastName
      */
-    public String getFirstName() {
-        return FirstName;
+    public String getLastName() {
+        return LastName;
     }
 
     /**
-     * Set the FirstName.
+     * Set the LastName.
      * 
-     * @param FirstName
-     *     the new FirstName
+     * @param LastName
+     *     the new LastName
      */
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
+    public void setLastName(String LastName) {
+        this.LastName = LastName;
+    }
+
+    /**
+     * Returns the AddressID.
+     * 
+     * @return
+     *     AddressID
+     */
+    public String getAddressID() {
+        return AddressID;
+    }
+
+    /**
+     * Set the AddressID.
+     * 
+     * @param AddressID
+     *     the new AddressID
+     */
+    public void setAddressID(String AddressID) {
+        this.AddressID = AddressID;
     }
 
     /**

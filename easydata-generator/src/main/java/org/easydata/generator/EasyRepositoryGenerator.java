@@ -111,7 +111,17 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 		// getInputFileName method
 		addGetInputFileNameMethod(clazz, jc);
 		
+		// size method
 		addSizeMethod(clazz, jc, jField);
+		
+		// populateReferenceIndices method
+		addPopulateReferenceIndicesMethod(clazz, jc);
+		
+	}
+	
+	private void addPopulateReferenceIndicesMethod(EasyClass clazz, JDefinedClass jc) {
+		
+		JMethod populateReferenceIndices = jc.method(JMod.PROTECTED, this._cm.VOID, "populateReferenceIndices");
 		
 	}
 	

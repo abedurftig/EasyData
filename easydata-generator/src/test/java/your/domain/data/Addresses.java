@@ -58,4 +58,7 @@ public class Addresses
         return Addresses.size();
     }
 
+    protected void populateReferenceIndices() {
+    }
+
 }

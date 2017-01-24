@@ -3,10 +3,12 @@ package your.domain.data;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+
 import org.apache.commons.csv.CSVRecord;
 import org.easydata.model.EasyCSVRepository;
+
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 
 /**
@@ -61,6 +63,9 @@ public class Employees
 
     public int size() {
         return Employees.size();
+    }
+
+    protected void populateReferenceIndices() {
     }
 
 }

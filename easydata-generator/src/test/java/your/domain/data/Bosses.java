@@ -61,4 +61,7 @@ public class Bosses
         return Bosses.size();
     }
 
+    protected void populateReferenceIndices() {
+    }
+
 }
