@@ -27,6 +27,7 @@ import com.sun.codemodel.JExpression;
 import com.sun.codemodel.JFieldVar;
 import com.sun.codemodel.JMethod;
 import com.sun.codemodel.JMod;
+import com.sun.codemodel.JMods;
 import com.sun.codemodel.JPackage;
 import com.sun.codemodel.JType;
 import com.sun.codemodel.JVar;
@@ -129,7 +130,13 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 		
 		// TODO: Implement
 		EasyLogger.getEasyLogger().warn("EasyRepositoryGenerator#createGetter has not been implemented yet!");
+		String repoName = clazz.targetClassName + getPluralSuffix(clazz);
 		
+		JDefinedClass repos = this._cm._package(_MODEL_PACKAGE_NAME)._getClass(repoName);
+		
+		String name = "get" + clazz.targetClassName + "By" + relation.getTo() + "Id";
+		JMethod getByParentID = repos.method(JMod.PUBLIC | JMod.STATIC, this._cm.ref(clazz.targetClassName), name);
+		getByParentID.body()._return(JExpr._null());
 		
 	}
 	
