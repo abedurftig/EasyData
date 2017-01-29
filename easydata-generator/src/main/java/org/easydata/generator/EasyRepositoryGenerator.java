@@ -18,6 +18,7 @@ import org.easydata.model.EasyRelation;
 import org.easydata.model.EasyType;
 import org.easydata.util.EasyLogger;
 
+import com.sun.codemodel.JBlock;
 import com.sun.codemodel.JClass;
 import com.sun.codemodel.JClassAlreadyExistsException;
 import com.sun.codemodel.JCodeModel;
@@ -25,10 +26,12 @@ import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JExpr;
 import com.sun.codemodel.JExpression;
 import com.sun.codemodel.JFieldVar;
+import com.sun.codemodel.JForLoop;
 import com.sun.codemodel.JMethod;
 import com.sun.codemodel.JMod;
 import com.sun.codemodel.JMods;
 import com.sun.codemodel.JPackage;
+import com.sun.codemodel.JStatement;
 import com.sun.codemodel.JType;
 import com.sun.codemodel.JVar;
 import com.sun.codemodel.JWhileLoop;
@@ -66,6 +69,10 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 				addRepositoryClass(clazz, pkg);
 			}
 			
+			for (EasyClass clazz : model.classes) {
+				enhanceRepositoryClasses(clazz, pkg);
+			}
+			
 			addRepositoriesInitMethod();
 			
 		} catch (JClassAlreadyExistsException jcae) {}
@@ -93,7 +100,7 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 		jc.javadoc().add("DO NOT MODIFY this class manually.");
 		
 		// add main repository
-		JFieldVar jField = addMainRepository(clazz, jc, name);
+		JFieldVar jField = addMainRepository(clazz, jc, jc.name());
 		
 		// create indices for other objects which have a one to many to this one
 		for (EasyRelation relation : clazz.getManyToOneRelations()) {
@@ -102,41 +109,75 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 		
 		// getById method
 		addGetByIdMethod(clazz, jc, jField);
+		
+	}
+	
+	private void enhanceRepositoryClasses(EasyClass clazz, JPackage pkg) throws JClassAlreadyExistsException {
+		
+		JDefinedClass repositoryClass = getRepository(pkg, clazz);
 
-		// create method to get objects from other repos which the class managed
-		// by this repo is managing
+		// create method to get objects from other repositories
+        // which the class managed by this repo is managing
 		for (EasyRelation relation : clazz.getOneToManyRelations()) {
-			createGetter(clazz, relation, jc);
+			createGetter(clazz, relation, repositoryClass);
 		}
 		
 		// createFrom method
-		addCreateFromMethod(clazz, jc);
+		addCreateFromMethod(clazz, repositoryClass);
 		
 		// add method
-		addAddMethod(clazz, jc, jField);
+		addAddMethod(clazz, repositoryClass);
 		
 		// getInputFileName method
-		addGetInputFileNameMethod(clazz, jc);
+		addGetInputFileNameMethod(clazz, repositoryClass);
 		
 		// size method
-		addSizeMethod(clazz, jc, jField);
+		addSizeMethod(clazz, repositoryClass);
 		
 		// populateReferenceIndices method
-		addPopulateReferenceIndicesMethod(clazz, jc);
+		addPopulateReferenceIndicesMethod(clazz, repositoryClass);
 		
 	}
 
 	private void createGetter(EasyClass clazz, EasyRelation relation, JDefinedClass jc) {
 		
-		// TODO: Implement
-		EasyLogger.getEasyLogger().warn("EasyRepositoryGenerator#createGetter has not been implemented yet!");
-		String repoName = clazz.targetClassName + getPluralSuffix(clazz);
+		String repoName = relation.getTo() + getPluralSuffix(relation.getTo());
+		String plural = relation.getTo() + getPluralSuffix(relation.getTo());
 		
-		JDefinedClass repos = this._cm._package(_MODEL_PACKAGE_NAME)._getClass(repoName);
+		JDefinedClass repo = this._cm._package(_MODEL_PACKAGE_NAME)._getClass(repoName);
 		
-		String name = "get" + clazz.targetClassName + "By" + relation.getTo() + "Id";
-		JMethod getByParentID = repos.method(JMod.PUBLIC | JMod.STATIC, this._cm.ref(clazz.targetClassName), name);
-		getByParentID.body()._return(JExpr._null());
+		JType returnType = this._cm.ref(java.util.Set.class).narrow(this._cm.ref(relation.getTo()));
+		
+		String name = "get" + plural + "By" + clazz.targetClassName + "Id";
+		JMethod getByParentID = repo.method(JMod.PUBLIC, returnType, name);
+		JVar parentId = getByParentID.param(String.class, clazz.targetClassName + "Id");
+		
+        // get index
+		JClass keysType = this._cm.ref(java.util.Set.class).narrow(String.class);
+        JVar keys = getByParentID.body().decl(keysType, "keys");
+        String fieldName = plural + "By" + clazz.targetClassName;
+        JFieldVar indexVar = repo.fields().get(fieldName);
+        keys.init(indexVar.invoke("get").arg(parentId));
+        
+        // result
+        JClass resultType = this._cm.ref(java.util.Set.class).narrow(this._cm.ref(relation.getTo()));
+        JClass resultTypeImpl = this._cm.ref(java.util.HashSet.class).narrow(this._cm.ref(relation.getTo()));
+        JVar result = getByParentID.body().decl(resultType, plural.toLowerCase());
+        result.init(JExpr._new(resultTypeImpl));
+		
+		// populate
+        
+        JClass iterType = this._cm.ref(java.util.Iterator.class).narrow(String.class);
+        
+        JBlock ifBody =  getByParentID.body()
+        	._if(keys.eq(JExpr._null()).not().cand(keys.invoke("size").gt(JExpr.lit(0))))._then();
+        
+        JVar iter = ifBody.decl(iterType, "keyIter", keys.invoke("iterator"));
+        ifBody._while(iter.invoke("hasNext")).body()
+        	.add(result.invoke("add").arg(
+        			JExpr._this().invoke("getById").arg(iter.invoke("next"))));
+        
+		getByParentID.body()._return(result);
 		
 	}
 	
@@ -161,9 +202,9 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 	}
 	
 	private void createReferenceIndex(EasyClass clazz, EasyRelation relation, JDefinedClass jc) {
-		
+
 		String name = clazz.targetClassName + getPluralSuffix(clazz);
-		
+
 		JType jtype = this._cm.ref(Object2ObjectMap.class).narrow(
 				this._cm.ref(String.class),
 				this._cm.ref(java.util.HashSet.class).narrow(String.class)
@@ -173,7 +214,8 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 				this._cm.ref(String.class),
 				this._cm.ref(java.util.HashSet.class).narrow(String.class)
 		);
-		
+
+
 		JFieldVar jField = jc.field(JMod.PRIVATE, jtype, name + "By" + relation.getTo());
 		jField.init(JExpr._new(jtypeImpl));
 		
@@ -182,6 +224,32 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 	private void addPopulateReferenceIndicesMethod(EasyClass clazz, JDefinedClass jc) {
 		
 		JMethod populateReferenceIndices = jc.method(JMod.PROTECTED, this._cm.VOID, "populateReferenceIndices");
+		
+		for (EasyRelation relation : clazz.getManyToOneRelations()) {
+			populateReferenceIndex(clazz, relation, jc, populateReferenceIndices);
+		}
+		
+	}
+	
+	private void populateReferenceIndex(EasyClass clazz, EasyRelation relation, 
+			JDefinedClass jc, JMethod parentMethod) {
+		
+		String name = clazz.targetClassName + getPluralSuffix(clazz) + "By" + relation.getTo();
+		parentMethod.body().directStatement("// populate " + name);
+		
+//		String repoName = relation.getTo() + getPluralSuffix(relation.getTo());
+//		//String plural = relation.getTo() + getPluralSuffix(relation.getTo());
+//		
+//		JDefinedClass repo = this._cm._package(_MODEL_PACKAGE_NAME)._getClass(repoName);
+//		
+//		String fieldName = repoName + "By" + clazz.targetClassName;
+//        JFieldVar indexVar = repo.fields().get(fieldName);
+//		
+//		JForLoop loop = parentMethod.body()._for();
+//		JVar index = loop.init(this._cm.INT, "i", JExpr.lit(0));
+//		loop.test(index.lt(indexVar.invoke("values").invoke("length")));
+//		loop.update(index.incr());
+//		JBlock forBody = loop.body();
 		
 	}
 	
@@ -244,7 +312,9 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 	 * @param definedClass
 	 * @param repoMap
 	 */
-	private void addAddMethod(EasyClass clazz, JDefinedClass definedClass, JFieldVar repoMap) {
+	private void addAddMethod(EasyClass clazz, JDefinedClass definedClass) {
+		
+		JFieldVar repoMap = definedClass.fields().get(definedClass.name());
 		
 		JMethod addMethod = definedClass.method(JMod.PUBLIC, this._cm.BOOLEAN, "add");
 		addMethod._throws(IllegalArgumentException.class);
@@ -285,10 +355,11 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 		
 	}
 	
-	private void addSizeMethod(EasyClass clazz, JDefinedClass jc, JFieldVar map) {
+	private void addSizeMethod(EasyClass clazz, JDefinedClass definedClass) {
 		
-		JMethod size = jc.method(JMod.PUBLIC, this._cm.INT, "size");
-		size.body()._return(map.invoke("size"));
+		JFieldVar repoMap = definedClass.fields().get(definedClass.name());
+		JMethod size = definedClass.method(JMod.PUBLIC, this._cm.INT, "size");
+		size.body()._return(repoMap.invoke("size"));
 		
 	}
 	
@@ -350,9 +421,18 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 		loop.body().add(repoVar.invoke("init").arg(param));
 	}
 	
+	private JDefinedClass getRepository(JPackage pkg, EasyClass clazz) {
+		String name = clazz.targetClassName + getPluralSuffix(clazz);
+		return pkg._getClass(name);
+	}
+	
 	private String getPluralSuffix(EasyClass clazz) {
+		return getPluralSuffix(clazz.targetClassName);
+	}
+
+	private String getPluralSuffix(String name) {
 		String suffix = "s";
-		if (clazz.targetClassName.endsWith("s")) {
+		if (name.endsWith("s")) {
 			suffix = "es";
 		}
 		return suffix;

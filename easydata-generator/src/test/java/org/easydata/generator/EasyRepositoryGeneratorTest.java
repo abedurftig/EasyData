@@ -1,6 +1,7 @@
 package org.easydata.generator;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -22,7 +23,7 @@ public class EasyRepositoryGeneratorTest {
 		assertEquals("size should match", 3588, emps.size());
 		
 		for (int i = 1; i <= 3588; i++) {
-			System.out.println(emps.getById("emp:" + i).getPublicID());
+			assertNotNull("should contains employee with id", emps.getById("emp:" + i));
 		}
 		
 	}
