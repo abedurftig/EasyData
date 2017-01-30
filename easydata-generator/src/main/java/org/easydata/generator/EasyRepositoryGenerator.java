@@ -204,18 +204,8 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 	private JFieldVar addMainRepository(EasyClass clazz, JDefinedClass jc, String name) {
 
 		// map holding the single items
-		JType jtype = this._cm.ref(Object2ObjectMap.class).narrow(
-				this._cm.ref(String.class),
-				this._cm.ref(clazz.targetClassName)
-				);
-
-		JClass jtypeImpl = this._cm.ref(Object2ObjectOpenHashMap.class).narrow(
-				this._cm.ref(String.class),
-				this._cm.ref(clazz.targetClassName)
-				);
-
-		JFieldVar jField = jc.field(JMod.PRIVATE, jtype, name);
-		jField.init(JExpr._new(jtypeImpl));
+		JFieldVar jField = jc.field(JMod.PRIVATE, JCodeModelUtil.getObject2ObjectMapType(this._cm), name);
+		jField.init(JExpr._new(JCodeModelUtil.getObject2ObjectMapImplType(this._cm)));
 
 		return jField;
 
@@ -224,20 +214,8 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 	private void createReferenceIndex(EasyClass clazz, EasyRelation relation, JDefinedClass jc) {
 
 		String name = getPlural(clazz.targetClassName);
-
-		JType jtype = this._cm.ref(Object2ObjectMap.class).narrow(
-				this._cm.ref(String.class),
-				this._cm.ref(java.util.HashSet.class).narrow(String.class)
-				);
-
-		JClass jtypeImpl = this._cm.ref(Object2ObjectOpenHashMap.class).narrow(
-				this._cm.ref(String.class),
-				this._cm.ref(java.util.HashSet.class).narrow(String.class)
-				);
-
-
-		JFieldVar jField = jc.field(JMod.PRIVATE, jtype, name + "By" + relation.getTo());
-		jField.init(JExpr._new(jtypeImpl));
+		JFieldVar jField = jc.field(JMod.PRIVATE, JCodeModelUtil.getObject2ObjectMapType(this._cm), name + "By" + relation.getTo());
+		jField.init(JExpr._new(JCodeModelUtil.getObject2ObjectMapImplType(this._cm)));
 
 	} 
 
