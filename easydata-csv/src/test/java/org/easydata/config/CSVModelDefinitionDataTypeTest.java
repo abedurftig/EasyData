@@ -33,10 +33,6 @@ public class CSVModelDefinitionDataTypeTest {
 		
 		IModelDefinitionReader parser = new CSVModelDefinitionReader();
 		EasyModel model = parser.readAndParseModelDefinitions(new File(path));
-		assertEquals("Expected different number of classes", 2, model.classes.size());
-		
-		EasyClass emClass = model.getClassByName("employee");
-		assertEquals("Expected different numbe of fields", 4, emClass.fields.size());
 		
 	}
 	

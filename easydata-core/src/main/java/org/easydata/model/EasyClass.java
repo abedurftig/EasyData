@@ -63,7 +63,7 @@ public class EasyClass extends EasyObj {
 	public boolean hasDateField() {
 		
 		for (EasyField field : fields) {
-			if (field.type != null && field.type.equals(EasyType.DATE.getType())) {
+			if (field.type != null && field.type.equals(EasyType.DATE)) {
 				return true;
 			}
 		}

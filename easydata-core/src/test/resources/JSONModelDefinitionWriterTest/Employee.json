@@ -8,6 +8,11 @@
   }, {
     "index" : 0,
     "key" : false,
+    "targetFieldName" : "Legs",
+    "type" : "int"
+  }, {
+    "index" : 0,
+    "key" : false,
     "targetFieldName" : "FirstName",
     "type" : "text"
   }, {
@@ -15,10 +20,5 @@
     "key" : false,
     "targetFieldName" : "DOB",
     "type" : "date"
-  }, {
-    "index" : 0,
-    "key" : false,
-    "targetFieldName" : "Legs",
-    "type" : "int"
   } ]
 }

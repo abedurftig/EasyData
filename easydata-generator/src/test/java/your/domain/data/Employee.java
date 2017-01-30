@@ -1,7 +1,6 @@
 
 package your.domain.data;
 
-import java.util.Date;
 import org.easydata.model.EasyPojo;
 
 
@@ -15,12 +14,12 @@ public class Employee
 {
 
     private String PublicId;
+    private String NoOfChildren;
     private String AddressId;
-    private Integer NoOfChildren;
-    private String BossId;
     private String LastName;
+    private String BossId;
     private String FirstName;
-    private Date DateOfBirth;
+    private String DateOfBirth;
 
     /**
      * Returns the PublicId.
@@ -40,6 +39,26 @@ public class Employee
      */
     public void setPublicId(String PublicId) {
         this.PublicId = PublicId;
+    }
+
+    /**
+     * Returns the NoOfChildren.
+     * 
+     * @return
+     *     NoOfChildren
+     */
+    public String getNoOfChildren() {
+        return NoOfChildren;
+    }
+
+    /**
+     * Set the NoOfChildren.
+     * 
+     * @param NoOfChildren
+     *     the new NoOfChildren
+     */
+    public void setNoOfChildren(String NoOfChildren) {
+        this.NoOfChildren = NoOfChildren;
     }
 
     /**
@@ -63,23 +82,23 @@ public class Employee
     }
 
     /**
-     * Returns the NoOfChildren.
+     * Returns the LastName.
      * 
      * @return
-     *     NoOfChildren
+     *     LastName
      */
-    public Integer getNoOfChildren() {
-        return NoOfChildren;
+    public String getLastName() {
+        return LastName;
     }
 
     /**
-     * Set the NoOfChildren.
+     * Set the LastName.
      * 
-     * @param NoOfChildren
-     *     the new NoOfChildren
+     * @param LastName
+     *     the new LastName
      */
-    public void setNoOfChildren(Integer NoOfChildren) {
-        this.NoOfChildren = NoOfChildren;
+    public void setLastName(String LastName) {
+        this.LastName = LastName;
     }
 
     /**
@@ -100,26 +119,6 @@ public class Employee
      */
     public void setBossId(String BossId) {
         this.BossId = BossId;
-    }
-
-    /**
-     * Returns the LastName.
-     * 
-     * @return
-     *     LastName
-     */
-    public String getLastName() {
-        return LastName;
-    }
-
-    /**
-     * Set the LastName.
-     * 
-     * @param LastName
-     *     the new LastName
-     */
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
     }
 
     /**
@@ -148,7 +147,7 @@ public class Employee
      * @return
      *     DateOfBirth
      */
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return DateOfBirth;
     }
 
@@ -158,7 +157,7 @@ public class Employee
      * @param DateOfBirth
      *     the new DateOfBirth
      */
-    public void setDateOfBirth(Date DateOfBirth) {
+    public void setDateOfBirth(String DateOfBirth) {
         this.DateOfBirth = DateOfBirth;
     }
 

@@ -49,11 +49,6 @@ public class Bosses
     {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
         Boss boss = new Boss();
-        boss.setPublicId((record.get(0)));
-        boss.setFirstName((record.get(1)));
-        boss.setLastName((record.get(2)));
-        boss.setDateOfBirth(sdf.parse((record.get(3))));
-        boss.setAddressId((record.get(4)));
         return boss;
     }
 

@@ -1,2 +1,2 @@
 Long,Text,Date,Number,BooleanDigitOne,BooleanDigitZero,BooleanLiteralTrue,BooleanLiteralFalse,Float
-1L,Some Text,11/05/1985,1,0,TRUE,FALSE,0.99
+1L,Some Text,11/05/1985,12,1,0,TRUE,FALSE,0.99

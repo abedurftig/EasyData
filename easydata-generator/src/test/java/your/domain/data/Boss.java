@@ -1,7 +1,6 @@
 
 package your.domain.data;
 
-import java.util.Date;
 import org.easydata.model.EasyPojo;
 
 
@@ -15,10 +14,10 @@ public class Boss
 {
 
     private String PublicId;
-    private Date DateOfBirth;
+    private String AddressId;
     private String FirstName;
     private String LastName;
-    private String AddressId;
+    private String DateOfBirth;
 
     /**
      * Returns the PublicId.
@@ -41,23 +40,23 @@ public class Boss
     }
 
     /**
-     * Returns the DateOfBirth.
+     * Returns the AddressId.
      * 
      * @return
-     *     DateOfBirth
+     *     AddressId
      */
-    public Date getDateOfBirth() {
-        return DateOfBirth;
+    public String getAddressId() {
+        return AddressId;
     }
 
     /**
-     * Set the DateOfBirth.
+     * Set the AddressId.
      * 
-     * @param DateOfBirth
-     *     the new DateOfBirth
+     * @param AddressId
+     *     the new AddressId
      */
-    public void setDateOfBirth(Date DateOfBirth) {
-        this.DateOfBirth = DateOfBirth;
+    public void setAddressId(String AddressId) {
+        this.AddressId = AddressId;
     }
 
     /**
@@ -101,23 +100,23 @@ public class Boss
     }
 
     /**
-     * Returns the AddressId.
+     * Returns the DateOfBirth.
      * 
      * @return
-     *     AddressId
+     *     DateOfBirth
      */
-    public String getAddressId() {
-        return AddressId;
+    public String getDateOfBirth() {
+        return DateOfBirth;
     }
 
     /**
-     * Set the AddressId.
+     * Set the DateOfBirth.
      * 
-     * @param AddressId
-     *     the new AddressId
+     * @param DateOfBirth
+     *     the new DateOfBirth
      */
-    public void setAddressId(String AddressId) {
-        this.AddressId = AddressId;
+    public void setDateOfBirth(String DateOfBirth) {
+        this.DateOfBirth = DateOfBirth;
     }
 
     public String getKeyValue() {

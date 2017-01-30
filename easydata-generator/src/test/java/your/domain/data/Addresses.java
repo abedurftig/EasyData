@@ -27,10 +27,6 @@ public class Addresses
         throws ParseException
     {
         Address address = new Address();
-        address.setPublicId((record.get(0)));
-        address.setStreet((record.get(1)));
-        address.setHouseNumber((record.get(2)));
-        address.setCity((record.get(3)));
         return address;
     }
 
