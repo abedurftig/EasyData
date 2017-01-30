@@ -1,4 +1,4 @@
-PublicID,Street,Number,ZipCode,City
+PublicId,Street,Number,ZipCode,City
 add:3,Main Street,2,50735,Cologne
 add:4,Am Rhein,25,50733,Cologne
 add:5,Gneisenaustr.,33,50733,Cologne

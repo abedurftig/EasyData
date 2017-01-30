@@ -10,6 +10,7 @@ public class EasyClass extends EasyObj {
 	public String fileName = null;
 	public String targetClassName = null;
 	public Set<EasyField> fields = new HashSet<EasyField>();
+	
 	@JsonIgnore
 	public Set<EasyRelation> relations = new HashSet<EasyRelation>();
 

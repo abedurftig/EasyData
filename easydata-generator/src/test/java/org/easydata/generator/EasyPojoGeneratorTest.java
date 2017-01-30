@@ -39,6 +39,7 @@ public class EasyPojoGeneratorTest {
 		FileUtils.forceMkdir(outFile);
 		
 		JCodeModel jModel = new JCodeModel();
+		
 		EasyCodeGenerator genModel = new EasyPojoGenerator();
 		genModel.generateCode(MODEL, jModel);
 		

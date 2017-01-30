@@ -15,12 +15,16 @@ public class EasyField extends EasyObj {
 	@JsonIgnore
 	public Class<?> getJavaType() {
 		
-		if (type.equals("text")) {
+		if (type.equals(EasyType.TEXT)) {
 			return java.lang.String.class;
-		} else if (type.equals("date")) {
+		} else if (type.equals(EasyType.DATE)) {
 			return java.util.Date.class;
-		} else if (type.equals("int")) {
+		} else if (type.equals(EasyType.INTEGER)) {
 			return java.lang.Integer.class;
+		} else if (type.equals(EasyType.BOOLEAN)) {
+			return java.lang.Boolean.class;
+		} else if (type.equals(EasyType.DECIMAL)) {
+			return java.math.BigDecimal.class;
 		}
 		
 		return java.lang.String.class;

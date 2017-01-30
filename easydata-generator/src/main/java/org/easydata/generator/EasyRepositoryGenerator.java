@@ -312,14 +312,14 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 
 			JExpression p2 = JExpr.direct("record.get(" + field.index + ")");
 
-			if (field.type.equals(EasyType.TEXT.getType())) {
+			if (field.type.equals(EasyType.TEXT)) {
 				createFrom.body().add(createFromResult.invoke("set" + field.targetFieldName).arg(p2));
-			} else if (field.type.equals(EasyType.DATE.getType())) {
+			} else if (field.type.equals(EasyType.DATE)) {
 				createFrom.body().add(
 						createFromResult.invoke("set" + field.targetFieldName).arg(
 								dateFormat.invoke("parse").arg(p2)
 								));
-			} else if (field.type.equals(EasyType.INTEGER.getType())) {
+			} else if (field.type.equals(EasyType.INTEGER)) {
 				createFrom.body().add(
 						createFromResult.invoke("set" + field.targetFieldName).arg(
 								this._cm.ref(Integer.class).staticInvoke("valueOf").arg(p2)

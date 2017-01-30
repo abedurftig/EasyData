@@ -3,6 +3,9 @@ package org.easydata.config;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyField;
@@ -85,7 +88,48 @@ public class CSVModelDefinitionReader implements IModelDefinitionReader {
     }
 	
 	private EasyType determineType(String content) {
+		
+		if (content.equals("1") ||
+			content.equals("0") ||
+			content.equalsIgnoreCase("TRUE") ||
+			content.equalsIgnoreCase("FALSE")) {
+			return EasyType.BOOLEAN;
+		}
+		
+		try {
+			Integer.parseInt(content);
+			return EasyType.INTEGER;
+		} catch (NumberFormatException e) {
+			//System.out.println("could not parse to int: " + content);
+		}
+		
+		try {
+			
+			String replaced = content.replaceAll("\\.", "").replaceAll(",", "");
+			Integer.parseInt(replaced);
+		
+			DecimalFormat df = new DecimalFormat();
+			df.setParseBigDecimal(true);
+			
+			df.parse(content);
+			return EasyType.DECIMAL;
+			
+		} catch (ParseException | NumberFormatException e) {
+			//System.out.println("could not parse to decimal: " + content);
+		}
+		
+		try {
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			sdf.parse(content);
+			return EasyType.DATE;
+			
+		} catch (ParseException e) {
+			//System.out.println("could not parse to date: " + content);
+		}
+		
 		return EasyType.TEXT;
+		
 	}
 
 }

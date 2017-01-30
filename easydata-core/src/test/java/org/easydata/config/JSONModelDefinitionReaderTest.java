@@ -23,6 +23,7 @@ public class JSONModelDefinitionReaderTest {
 		EasyModel em = parser.readAndParseModelDefinitions(new File(path));
 		EasyClass ec = em.getClassByName("Employee");
 		
+		assertEquals("Expected different number of fields", 4, ec.fields.size());
 		assertEquals("Expected different type", EasyType.TEXT, ec.getFieldByName("FirstName").type);
 		assertEquals("Expected different type", EasyType.DATE, ec.getFieldByName("DOB").type);
 		assertEquals("Expected different type", EasyType.INTEGER, ec.getFieldByName("Legs").type);
