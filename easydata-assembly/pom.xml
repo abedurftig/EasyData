@@ -10,7 +10,7 @@
 	<name>EasyData Assembly</name>
 
 	<build>
-		<finalName>EasyData</finalName>
+		<finalName>EasyData-Runnable</finalName>
 		<plugins>
 			<!-- Maven Shade Plugin -->
 			<plugin>
@@ -36,7 +36,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
 
@@ -47,4 +46,5 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+	
 </project>
