@@ -58,3 +58,17 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+easydata-generator/src/test/java/your/domain/data/Address.java
+
+easydata-generator/src/test/java/your/domain/data/Addresses.java
+
+easydata-generator/src/test/java/your/domain/data/Boss.java
+
+easydata-generator/src/test/java/your/domain/data/Employee.java
+
+easydata-generator/src/test/java/your/domain/data/Bosses.java
+
+easydata-generator/src/test/java/your/domain/data/Employees.java
+
+easydata-generator/src/test/java/your/domain/data/Repositories.java
