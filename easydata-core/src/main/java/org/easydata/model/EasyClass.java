@@ -13,14 +13,17 @@ public class EasyClass extends EasyObj {
 	@JsonIgnore
 	public Set<EasyRelation> relations = new HashSet<EasyRelation>();
 
+	@JsonIgnore
 	public Set<EasyRelation> getManyToOneRelations() {
 		return getRelationsByType(EasyRelation.RelationType.MANY_TO_ONE);
 	}
 	
+	@JsonIgnore
 	public Set<EasyRelation> getOneToManyRelations() {
 		return getRelationsByType(EasyRelation.RelationType.ONE_TO_MANY);
 	}
 	
+	@JsonIgnore
 	public EasyField getKeyField() {
 		
 		for (EasyField field : fields) {
@@ -32,6 +35,7 @@ public class EasyClass extends EasyObj {
 		
 	}
 	
+	@JsonIgnore
 	public Set<EasyField> getRefs() {
 		
 		Set<EasyField> refs = new HashSet<EasyField>(); 
@@ -41,6 +45,18 @@ public class EasyClass extends EasyObj {
 			}
 		}
 		return refs;
+		
+	}
+	
+	public EasyField getFieldByName(String fieldName) {
+		
+		for (EasyField ef: this.fields) {			
+			if (ef.targetFieldName.equals(fieldName)) {
+				return ef;
+			}
+		}
+		
+		return null;
 		
 	}
 	

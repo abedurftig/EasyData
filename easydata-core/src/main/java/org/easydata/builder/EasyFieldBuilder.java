@@ -37,7 +37,7 @@ public class EasyFieldBuilder implements IEasyModelBuilder<EasyField, EasyFieldB
 	
 	public EasyFieldBuilder withType(EasyType type) {
 		
-		this._field.type = type.getType();
+		this._field.type = type;
 		return this;
 		
 	}

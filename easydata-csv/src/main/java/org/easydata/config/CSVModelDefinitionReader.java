@@ -1,14 +1,13 @@
 package org.easydata.config;
 
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyField;
 import org.easydata.model.EasyModel;
+import org.easydata.model.EasyType;
 import org.easydata.util.CSVFileUtil;
 import org.easydata.util.FileFilters;
 
@@ -40,6 +39,12 @@ public class CSVModelDefinitionReader implements IModelDefinitionReader {
 		String header = readHeader(csvFile);
 		String[] headerNames = header.split(_SEPERATOR);
 		
+		String data = readFirstDataRow(csvFile);
+		String[] datas = null;
+		if (data != null) {
+			datas = data.split(_SEPERATOR);
+		}
+		
 		EasyClass clazz = new EasyClass();
 		clazz.fileName = csvFile.getName();
 		clazz.targetClassName = csvFile.getName().replace(".csv", "");
@@ -50,7 +55,12 @@ public class CSVModelDefinitionReader implements IModelDefinitionReader {
 			EasyField field = new EasyField();
 			field.index = i;
 			field.targetFieldName = fieldName;
-			field.type = "text";
+			field.type = EasyType.TEXT;
+			
+			if (datas != null) {
+				String fieldContent = datas[i];
+				field.type = determineType(fieldContent);
+			} 
 			
 			clazz.fields.add(field);
 			
@@ -73,5 +83,9 @@ public class CSVModelDefinitionReader implements IModelDefinitionReader {
 		return csvUtil.readLineAt(1);
 		
     }
+	
+	private EasyType determineType(String content) {
+		return EasyType.TEXT;
+	}
 
 }

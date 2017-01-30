@@ -1,10 +1,14 @@
 package org.easydata.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum EasyType {
 
 	TEXT("text"),
 	INTEGER("int"),
-	DATE("date");
+	DATE("date"),
+	DECIMAL("decimal"),
+	BOOLEAN("boolean");
 	
 	private String _typeString = null;
 	
@@ -12,26 +16,27 @@ public enum EasyType {
 		this._typeString = type;
 	}
 	
+	@JsonValue
 	public String getType() {
 		return this._typeString;
 	}
 	
-	public EasyType from(String type) {
+	public Class<?> getJavaType() {
 		
-		if (type.equalsIgnoreCase("text")) {
-			return EasyType.TEXT;
+		if (_typeString.equals(TEXT.getType())) {
+			return java.lang.String.class;
+		} else if (_typeString.equals(DATE.getType())) {
+			return java.util.Date.class;
+		} else if (_typeString.equals(INTEGER.getType())) {
+			return java.lang.Integer.class;
+		} else if (_typeString.equals(BOOLEAN.getType())) {
+			return java.lang.Boolean.class;
+		} else if (_typeString.equals(DECIMAL.getType())) {
+			return java.math.BigDecimal.class;
 		}
 		
-		if (type.equalsIgnoreCase("date")) {
-			return EasyType.DATE;
-		}
+		return java.lang.String.class;
 		
-		if (type.equalsIgnoreCase("int")) {
-			return EasyType.INTEGER;
-		}
-		
-		return null;
-		
-	}
+	} 
 	
 }

@@ -1,0 +1,24 @@
+{
+  "targetClassName" : "Employee",
+  "fields" : [ {
+    "index" : 0,
+    "key" : false,
+    "targetFieldName" : "FirstName",
+    "type" : "text"
+  }, {
+    "index" : 0,
+    "key" : false,
+    "targetFieldName" : "DOB",
+    "type" : "date"
+  }, {
+    "index" : 0,
+    "key" : false,
+    "targetFieldName" : "Legs",
+    "type" : "int"
+  }, {
+    "index" : 0,
+    "key" : true,
+    "targetFieldName" : "Id",
+    "type" : "text"
+  } ]
+}

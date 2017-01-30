@@ -1,29 +1,18 @@
 package org.easydata.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class EasyField extends EasyObj {
 
 	public int index = 0;
 	public boolean key = false;
 	public String targetFieldName = null;
-	public String type = "text";
+	public EasyType type = EasyType.TEXT;
 	public String ref = null;
 	
 	public EasyField() {}
 	
-	public String getJavaTypeAsString() {
-		
-		if (type.equals("text")) {
-			return "String";
-		} else if (type.equals("date")) {
-			return "Date";
-		} else if (type.equals("int")) {
-			return "Integer";
-		}
-		
-		return "String";
-		
-	}
-	
+	@JsonIgnore
 	public Class<?> getJavaType() {
 		
 		if (type.equals("text")) {
