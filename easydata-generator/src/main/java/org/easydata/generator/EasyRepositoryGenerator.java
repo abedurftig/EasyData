@@ -204,8 +204,14 @@ public class EasyRepositoryGenerator extends EasyCodeGenerator {
 	private JFieldVar addMainRepository(EasyClass clazz, JDefinedClass jc, String name) {
 
 		// map holding the single items
-		JFieldVar jField = jc.field(JMod.PRIVATE, JCodeModelUtil.getObject2ObjectMapType(this._cm), name);
-		jField.init(JExpr._new(JCodeModelUtil.getObject2ObjectMapImplType(this._cm)));
+		JType jtype = this._cm.ref(Object2ObjectMap.class).narrow(this._cm.ref(String.class),
+				this._cm.ref(clazz.targetClassName));
+
+		JClass jtypeImpl = this._cm.ref(Object2ObjectOpenHashMap.class).narrow(this._cm.ref(String.class),
+				this._cm.ref(clazz.targetClassName));
+		
+		JFieldVar jField = jc.field(JMod.PRIVATE, jtype, name);
+		jField.init(JExpr._new(jtypeImpl));
 
 		return jField;
 

@@ -16,11 +16,11 @@ public class Employee
 
     private String PublicId;
     private String AddressId;
+    private Integer NoOfChildren;
     private String BossId;
-    private Date DateOfBirth;
     private String LastName;
     private String FirstName;
-    private Integer NoOfChildren;
+    private Date DateOfBirth;
 
     /**
      * Returns the PublicId.
@@ -63,6 +63,26 @@ public class Employee
     }
 
     /**
+     * Returns the NoOfChildren.
+     * 
+     * @return
+     *     NoOfChildren
+     */
+    public Integer getNoOfChildren() {
+        return NoOfChildren;
+    }
+
+    /**
+     * Set the NoOfChildren.
+     * 
+     * @param NoOfChildren
+     *     the new NoOfChildren
+     */
+    public void setNoOfChildren(Integer NoOfChildren) {
+        this.NoOfChildren = NoOfChildren;
+    }
+
+    /**
      * Returns the BossId.
      * 
      * @return
@@ -80,26 +100,6 @@ public class Employee
      */
     public void setBossId(String BossId) {
         this.BossId = BossId;
-    }
-
-    /**
-     * Returns the DateOfBirth.
-     * 
-     * @return
-     *     DateOfBirth
-     */
-    public Date getDateOfBirth() {
-        return DateOfBirth;
-    }
-
-    /**
-     * Set the DateOfBirth.
-     * 
-     * @param DateOfBirth
-     *     the new DateOfBirth
-     */
-    public void setDateOfBirth(Date DateOfBirth) {
-        this.DateOfBirth = DateOfBirth;
     }
 
     /**
@@ -143,23 +143,23 @@ public class Employee
     }
 
     /**
-     * Returns the NoOfChildren.
+     * Returns the DateOfBirth.
      * 
      * @return
-     *     NoOfChildren
+     *     DateOfBirth
      */
-    public Integer getNoOfChildren() {
-        return NoOfChildren;
+    public Date getDateOfBirth() {
+        return DateOfBirth;
     }
 
     /**
-     * Set the NoOfChildren.
+     * Set the DateOfBirth.
      * 
-     * @param NoOfChildren
-     *     the new NoOfChildren
+     * @param DateOfBirth
+     *     the new DateOfBirth
      */
-    public void setNoOfChildren(Integer NoOfChildren) {
-        this.NoOfChildren = NoOfChildren;
+    public void setDateOfBirth(Date DateOfBirth) {
+        this.DateOfBirth = DateOfBirth;
     }
 
     public String getKeyValue() {

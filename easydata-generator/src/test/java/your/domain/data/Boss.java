@@ -15,10 +15,10 @@ public class Boss
 {
 
     private String PublicId;
-    private String FirstName;
-    private String AddressId;
     private Date DateOfBirth;
+    private String FirstName;
     private String LastName;
+    private String AddressId;
 
     /**
      * Returns the PublicId.
@@ -38,46 +38,6 @@ public class Boss
      */
     public void setPublicId(String PublicId) {
         this.PublicId = PublicId;
-    }
-
-    /**
-     * Returns the FirstName.
-     * 
-     * @return
-     *     FirstName
-     */
-    public String getFirstName() {
-        return FirstName;
-    }
-
-    /**
-     * Set the FirstName.
-     * 
-     * @param FirstName
-     *     the new FirstName
-     */
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
-    }
-
-    /**
-     * Returns the AddressId.
-     * 
-     * @return
-     *     AddressId
-     */
-    public String getAddressId() {
-        return AddressId;
-    }
-
-    /**
-     * Set the AddressId.
-     * 
-     * @param AddressId
-     *     the new AddressId
-     */
-    public void setAddressId(String AddressId) {
-        this.AddressId = AddressId;
     }
 
     /**
@@ -101,6 +61,26 @@ public class Boss
     }
 
     /**
+     * Returns the FirstName.
+     * 
+     * @return
+     *     FirstName
+     */
+    public String getFirstName() {
+        return FirstName;
+    }
+
+    /**
+     * Set the FirstName.
+     * 
+     * @param FirstName
+     *     the new FirstName
+     */
+    public void setFirstName(String FirstName) {
+        this.FirstName = FirstName;
+    }
+
+    /**
      * Returns the LastName.
      * 
      * @return
@@ -118,6 +98,26 @@ public class Boss
      */
     public void setLastName(String LastName) {
         this.LastName = LastName;
+    }
+
+    /**
+     * Returns the AddressId.
+     * 
+     * @return
+     *     AddressId
+     */
+    public String getAddressId() {
+        return AddressId;
+    }
+
+    /**
+     * Set the AddressId.
+     * 
+     * @param AddressId
+     *     the new AddressId
+     */
+    public void setAddressId(String AddressId) {
+        this.AddressId = AddressId;
     }
 
     public String getKeyValue() {

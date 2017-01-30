@@ -11,7 +11,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.easydata</groupId>
-			<artifactId>core</artifactId>
+			<artifactId>easydata-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

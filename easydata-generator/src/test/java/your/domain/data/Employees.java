@@ -97,8 +97,8 @@ public class Employees
         }
     }
 
-    public Set<Employee> getEmployeesByBossId(String BossId) {
-        Set<String> keys = EmployeesByBoss.get(BossId);
+    public Set<Employee> getEmployeesByAddressId(String AddressId) {
+        Set<String> keys = EmployeesByAddress.get(AddressId);
         Set<Employee> employees = new HashSet<Employee>();
         if ((!(keys == null))&&(keys.size()> 0)) {
             Iterator<String> keyIter = keys.iterator();
@@ -109,8 +109,8 @@ public class Employees
         return employees;
     }
 
-    public Set<Employee> getEmployeesByAddressId(String AddressId) {
-        Set<String> keys = EmployeesByAddress.get(AddressId);
+    public Set<Employee> getEmployeesByBossId(String BossId) {
+        Set<String> keys = EmployeesByBoss.get(BossId);
         Set<Employee> employees = new HashSet<Employee>();
         if ((!(keys == null))&&(keys.size()> 0)) {
             Iterator<String> keyIter = keys.iterator();

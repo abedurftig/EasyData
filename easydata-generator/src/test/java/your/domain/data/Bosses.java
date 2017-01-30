@@ -32,6 +32,18 @@ public class Bosses
         return this.Bosses.get(id);
     }
 
+    public Set<Boss> getBossesByAddressId(String AddressId) {
+        Set<String> keys = BossesByAddress.get(AddressId);
+        Set<Boss> bosses = new HashSet<Boss>();
+        if ((!(keys == null))&&(keys.size()> 0)) {
+            Iterator<String> keyIter = keys.iterator();
+            while (keyIter.hasNext()) {
+                bosses.add(this.getById(keyIter.next()));
+            }
+        }
+        return bosses;
+    }
+
     public Boss createFrom(CSVRecord record)
         throws ParseException
     {
@@ -81,18 +93,6 @@ public class Bosses
             }
             bossesByAddress.add(boss.getKeyValue());
         }
-    }
-
-    public Set<Boss> getBossesByAddressId(String AddressId) {
-        Set<String> keys = BossesByAddress.get(AddressId);
-        Set<Boss> bosses = new HashSet<Boss>();
-        if ((!(keys == null))&&(keys.size()> 0)) {
-            Iterator<String> keyIter = keys.iterator();
-            while (keyIter.hasNext()) {
-                bosses.add(this.getById(keyIter.next()));
-            }
-        }
-        return bosses;
     }
 
 }
