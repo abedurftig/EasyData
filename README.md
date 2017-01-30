@@ -9,4 +9,8 @@ The Java Oject Model classes are generated based on a JSON definition file. Easy
 
 Currently EasyData works with CSV only. EasyData can read the header of an CSV file to create a JSON definition file which can be enhanced with furher details like keys and references. Once happy, the code generation will create the POJO classes representing the Java Object Model and the repository classes. The CSV implementation will initialize the data reading from CSV files. 
 
+###Trello
+
+Check here for stuff that still needs to be done. https://trello.com/b/wtjZ1H8I/easydata
+
 
