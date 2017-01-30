@@ -14,30 +14,30 @@ public class Boss
     extends EasyPojo
 {
 
-    private String PublicID;
+    private String PublicId;
     private String FirstName;
+    private String AddressId;
     private Date DateOfBirth;
-    private String AddressID;
     private String LastName;
 
     /**
-     * Returns the PublicID.
+     * Returns the PublicId.
      * 
      * @return
-     *     PublicID
+     *     PublicId
      */
-    public String getPublicID() {
-        return PublicID;
+    public String getPublicId() {
+        return PublicId;
     }
 
     /**
-     * Set the PublicID.
+     * Set the PublicId.
      * 
-     * @param PublicID
-     *     the new PublicID
+     * @param PublicId
+     *     the new PublicId
      */
-    public void setPublicID(String PublicID) {
-        this.PublicID = PublicID;
+    public void setPublicId(String PublicId) {
+        this.PublicId = PublicId;
     }
 
     /**
@@ -61,6 +61,26 @@ public class Boss
     }
 
     /**
+     * Returns the AddressId.
+     * 
+     * @return
+     *     AddressId
+     */
+    public String getAddressId() {
+        return AddressId;
+    }
+
+    /**
+     * Set the AddressId.
+     * 
+     * @param AddressId
+     *     the new AddressId
+     */
+    public void setAddressId(String AddressId) {
+        this.AddressId = AddressId;
+    }
+
+    /**
      * Returns the DateOfBirth.
      * 
      * @return
@@ -78,26 +98,6 @@ public class Boss
      */
     public void setDateOfBirth(Date DateOfBirth) {
         this.DateOfBirth = DateOfBirth;
-    }
-
-    /**
-     * Returns the AddressID.
-     * 
-     * @return
-     *     AddressID
-     */
-    public String getAddressID() {
-        return AddressID;
-    }
-
-    /**
-     * Set the AddressID.
-     * 
-     * @param AddressID
-     *     the new AddressID
-     */
-    public void setAddressID(String AddressID) {
-        this.AddressID = AddressID;
     }
 
     /**
@@ -121,7 +121,7 @@ public class Boss
     }
 
     public String getKeyValue() {
-        return this.PublicID;
+        return this.PublicId;
     }
 
 }

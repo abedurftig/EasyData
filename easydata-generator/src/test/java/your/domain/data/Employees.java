@@ -3,6 +3,9 @@ package your.domain.data;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import org.apache.commons.csv.CSVRecord;
@@ -19,8 +22,16 @@ public class Employees
 {
 
     private Object2ObjectMap<String, Employee> Employees = new Object2ObjectOpenHashMap<String, Employee>();
-    private Object2ObjectMap<String, String> BossEmployee = new Object2ObjectOpenHashMap<String, String>();
-    private Object2ObjectMap<String, String> AddressEmployee = new Object2ObjectOpenHashMap<String, String>();
+    private Object2ObjectMap<String, HashSet<String>> EmployeesByBoss = new Object2ObjectOpenHashMap<String, HashSet<String>>();
+    private Object2ObjectMap<String, HashSet<String>> EmployeesByAddress = new Object2ObjectOpenHashMap<String, HashSet<String>>();
+
+    public Boss getBoss(Employee employee) {
+        return Repositories.get(Bosses.class).getById(employee.getBossId());
+    }
+
+    public Address getAddress(Employee employee) {
+        return Repositories.get(Addresses.class).getById(employee.getAddressId());
+    }
 
     public Employee getById(String id) {
         return this.Employees.get(id);
@@ -31,13 +42,13 @@ public class Employees
     {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
         Employee employee = new Employee();
-        employee.setPublicID((record.get(0)));
+        employee.setPublicId((record.get(0)));
         employee.setFirstName((record.get(1)));
         employee.setLastName((record.get(2)));
         employee.setDateOfBirth(sdf.parse((record.get(3))));
-        employee.setAddressID((record.get(4)));
+        employee.setAddressId((record.get(4)));
         employee.setNoOfChildren(Integer.valueOf((record.get(5))));
-        employee.setBossID((record.get(6)));
+        employee.setBossId((record.get(6)));
         return employee;
     }
 
@@ -66,6 +77,48 @@ public class Employees
     }
 
     protected void populateReferenceIndices() {
+        Iterator<Employee> valuesIter = Employees.values().iterator();
+        while (valuesIter.hasNext()) {
+            Employee employee = valuesIter.next();
+            // populate EmployeesByBoss
+            HashSet<String> employeesByBoss = EmployeesByBoss.get(employee.getBossId());
+            if (employeesByBoss == null) {
+                employeesByBoss = new HashSet<String>();
+                EmployeesByBoss.put(employee.getBossId(), employeesByBoss);
+            }
+            employeesByBoss.add(employee.getKeyValue());
+            // populate EmployeesByAddress
+            HashSet<String> employeesByAddress = EmployeesByAddress.get(employee.getAddressId());
+            if (employeesByAddress == null) {
+                employeesByAddress = new HashSet<String>();
+                EmployeesByAddress.put(employee.getAddressId(), employeesByAddress);
+            }
+            employeesByAddress.add(employee.getKeyValue());
+        }
+    }
+
+    public Set<Employee> getEmployeesByBossId(String BossId) {
+        Set<String> keys = EmployeesByBoss.get(BossId);
+        Set<Employee> employees = new HashSet<Employee>();
+        if ((!(keys == null))&&(keys.size()> 0)) {
+            Iterator<String> keyIter = keys.iterator();
+            while (keyIter.hasNext()) {
+                employees.add(this.getById(keyIter.next()));
+            }
+        }
+        return employees;
+    }
+
+    public Set<Employee> getEmployeesByAddressId(String AddressId) {
+        Set<String> keys = EmployeesByAddress.get(AddressId);
+        Set<Employee> employees = new HashSet<Employee>();
+        if ((!(keys == null))&&(keys.size()> 0)) {
+            Iterator<String> keyIter = keys.iterator();
+            while (keyIter.hasNext()) {
+                employees.add(this.getById(keyIter.next()));
+            }
+        }
+        return employees;
     }
 
 }

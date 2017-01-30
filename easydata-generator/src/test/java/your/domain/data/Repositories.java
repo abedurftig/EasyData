@@ -17,21 +17,21 @@ public class Repositories {
 
     private static Map<Class<?> , EasyRepository<?>> REPOS = new HashMap<Class<?> , EasyRepository<?>>();
 
+    public static<T extends EasyRepository<?> >T get(Class<T> type) {
+        return type.cast(REPOS.get(type));
+    }
+
     public static void init(String path)
         throws IOException
     {
+        REPOS.put(Employees.class, new Employees());
         REPOS.put(Bosses.class, new Bosses());
         REPOS.put(Addresses.class, new Addresses());
-        REPOS.put(Employees.class, new Employees());
         Iterator<EasyRepository<?>> iter = REPOS.values().iterator();
         while (iter.hasNext()) {
             EasyRepository<?> repo = iter.next();
             repo.init(path);
         }
-    }
-
-    public static<T extends EasyRepository<?> >T get(Class<T> type) {
-        return type.cast(REPOS.get(type));
     }
 
 }

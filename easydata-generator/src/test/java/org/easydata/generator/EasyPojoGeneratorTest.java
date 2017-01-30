@@ -32,7 +32,7 @@ public class EasyPojoGeneratorTest {
 	}
 	
 	@Test
-	public void firstTest() throws IOException {
+	public void createFromJSON() throws IOException {
 		
 		String out = Paths.get("src/test/java/").toAbsolutePath().toString();
 		File outFile = new File(out);

@@ -9,7 +9,7 @@
   }, {
     "index" : 0,
     "key" : true,
-    "targetFieldName" : "PublicID",
+    "targetFieldName" : "PublicId",
     "type" : "text"
   }, {
     "index" : 3,

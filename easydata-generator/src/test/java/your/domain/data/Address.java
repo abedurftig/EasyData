@@ -13,49 +13,49 @@ public class Address
     extends EasyPojo
 {
 
-    private String PublicID;
-    private String Street;
-    private String HouseNumber;
+    private String PublicId;
     private String City;
+    private String HouseNumber;
+    private String Street;
 
     /**
-     * Returns the PublicID.
+     * Returns the PublicId.
      * 
      * @return
-     *     PublicID
+     *     PublicId
      */
-    public String getPublicID() {
-        return PublicID;
+    public String getPublicId() {
+        return PublicId;
     }
 
     /**
-     * Set the PublicID.
+     * Set the PublicId.
      * 
-     * @param PublicID
-     *     the new PublicID
+     * @param PublicId
+     *     the new PublicId
      */
-    public void setPublicID(String PublicID) {
-        this.PublicID = PublicID;
+    public void setPublicId(String PublicId) {
+        this.PublicId = PublicId;
     }
 
     /**
-     * Returns the Street.
+     * Returns the City.
      * 
      * @return
-     *     Street
+     *     City
      */
-    public String getStreet() {
-        return Street;
+    public String getCity() {
+        return City;
     }
 
     /**
-     * Set the Street.
+     * Set the City.
      * 
-     * @param Street
-     *     the new Street
+     * @param City
+     *     the new City
      */
-    public void setStreet(String Street) {
-        this.Street = Street;
+    public void setCity(String City) {
+        this.City = City;
     }
 
     /**
@@ -79,27 +79,27 @@ public class Address
     }
 
     /**
-     * Returns the City.
+     * Returns the Street.
      * 
      * @return
-     *     City
+     *     Street
      */
-    public String getCity() {
-        return City;
+    public String getStreet() {
+        return Street;
     }
 
     /**
-     * Set the City.
+     * Set the Street.
      * 
-     * @param City
-     *     the new City
+     * @param Street
+     *     the new Street
      */
-    public void setCity(String City) {
-        this.City = City;
+    public void setStreet(String Street) {
+        this.Street = Street;
     }
 
     public String getKeyValue() {
-        return this.PublicID;
+        return this.PublicId;
     }
 
 }

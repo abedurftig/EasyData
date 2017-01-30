@@ -14,32 +14,72 @@ public class Employee
     extends EasyPojo
 {
 
-    private String PublicID;
+    private String PublicId;
+    private String AddressId;
+    private String BossId;
     private Date DateOfBirth;
+    private String LastName;
     private String FirstName;
     private Integer NoOfChildren;
-    private String BossID;
-    private String AddressID;
-    private String LastName;
 
     /**
-     * Returns the PublicID.
+     * Returns the PublicId.
      * 
      * @return
-     *     PublicID
+     *     PublicId
      */
-    public String getPublicID() {
-        return PublicID;
+    public String getPublicId() {
+        return PublicId;
     }
 
     /**
-     * Set the PublicID.
+     * Set the PublicId.
      * 
-     * @param PublicID
-     *     the new PublicID
+     * @param PublicId
+     *     the new PublicId
      */
-    public void setPublicID(String PublicID) {
-        this.PublicID = PublicID;
+    public void setPublicId(String PublicId) {
+        this.PublicId = PublicId;
+    }
+
+    /**
+     * Returns the AddressId.
+     * 
+     * @return
+     *     AddressId
+     */
+    public String getAddressId() {
+        return AddressId;
+    }
+
+    /**
+     * Set the AddressId.
+     * 
+     * @param AddressId
+     *     the new AddressId
+     */
+    public void setAddressId(String AddressId) {
+        this.AddressId = AddressId;
+    }
+
+    /**
+     * Returns the BossId.
+     * 
+     * @return
+     *     BossId
+     */
+    public String getBossId() {
+        return BossId;
+    }
+
+    /**
+     * Set the BossId.
+     * 
+     * @param BossId
+     *     the new BossId
+     */
+    public void setBossId(String BossId) {
+        this.BossId = BossId;
     }
 
     /**
@@ -60,6 +100,26 @@ public class Employee
      */
     public void setDateOfBirth(Date DateOfBirth) {
         this.DateOfBirth = DateOfBirth;
+    }
+
+    /**
+     * Returns the LastName.
+     * 
+     * @return
+     *     LastName
+     */
+    public String getLastName() {
+        return LastName;
+    }
+
+    /**
+     * Set the LastName.
+     * 
+     * @param LastName
+     *     the new LastName
+     */
+    public void setLastName(String LastName) {
+        this.LastName = LastName;
     }
 
     /**
@@ -102,68 +162,8 @@ public class Employee
         this.NoOfChildren = NoOfChildren;
     }
 
-    /**
-     * Returns the BossID.
-     * 
-     * @return
-     *     BossID
-     */
-    public String getBossID() {
-        return BossID;
-    }
-
-    /**
-     * Set the BossID.
-     * 
-     * @param BossID
-     *     the new BossID
-     */
-    public void setBossID(String BossID) {
-        this.BossID = BossID;
-    }
-
-    /**
-     * Returns the AddressID.
-     * 
-     * @return
-     *     AddressID
-     */
-    public String getAddressID() {
-        return AddressID;
-    }
-
-    /**
-     * Set the AddressID.
-     * 
-     * @param AddressID
-     *     the new AddressID
-     */
-    public void setAddressID(String AddressID) {
-        this.AddressID = AddressID;
-    }
-
-    /**
-     * Returns the LastName.
-     * 
-     * @return
-     *     LastName
-     */
-    public String getLastName() {
-        return LastName;
-    }
-
-    /**
-     * Set the LastName.
-     * 
-     * @param LastName
-     *     the new LastName
-     */
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
-    }
-
     public String getKeyValue() {
-        return this.PublicID;
+        return this.PublicId;
     }
 
 }

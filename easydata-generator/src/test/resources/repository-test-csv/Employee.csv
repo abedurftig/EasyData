@@ -1,0 +1,4 @@
+PublicId,FirstName,LastName,DateOfBirth,AddressID,NoOfChildren,BossID
+emp:1,Peter,Parker,12/03/1983,add:3,2,boss:3
+emp:2,Marc,OConnel,10/09/1922,add:4,3,boss:3
+emp:3,Lucy,James,21/01/1989,add:4,3,boss:1

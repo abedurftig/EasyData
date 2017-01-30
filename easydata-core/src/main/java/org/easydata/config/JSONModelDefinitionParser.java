@@ -39,7 +39,7 @@ public class JSONModelDefinitionParser implements IModelDefinitionParser {
 						clazz.relations.add(new EasyRelation(RelationType.BI_DI_ONE_TO_ONE, other.targetClassName));
 					} else {
 						other.relations.add(new EasyRelation(RelationType.ONE_TO_MANY, clazz.targetClassName));
-						clazz.relations.add(new EasyRelation(RelationType.MANY_TO_ONE, other.targetClassName));
+						clazz.relations.add(new EasyRelation(RelationType.MANY_TO_ONE, other.targetClassName, field.targetFieldName));
 					}
 				} else {
 					new IllegalStateException("class " + clazz.targetClassName + "references class " +

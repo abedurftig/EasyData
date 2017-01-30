@@ -4,7 +4,7 @@
   "fields" : [ {
     "index" : 0,
     "key" : true,
-    "targetFieldName" : "PublicID",
+    "targetFieldName" : "PublicId",
     "type" : "text"
   },
   {
@@ -28,7 +28,7 @@
   {
     "index" : 4,
     "key" : false,
-    "targetFieldName" : "AddressID",
+    "targetFieldName" : "AddressId",
     "type" : "text",
     "ref" : "Address"
   } ]
