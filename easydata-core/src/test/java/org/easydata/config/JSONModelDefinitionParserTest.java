@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.easydata.builder.EasyClassBuilder;
 import org.easydata.builder.EasyFieldBuilder;
 import org.easydata.builder.EasyModelBuilder;
-import org.easydata.config.JSONModelDefinitionParser;
+import org.easydata.config.JSONModelDefinitionReader;
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyModel;
 import org.easydata.model.EasyRelation;
@@ -48,7 +48,7 @@ public class JSONModelDefinitionParserTest {
 		EasyClass add = c2.get();
 		
 		// act
-		new JSONModelDefinitionParser().addRelationships(em);
+		new JSONModelDefinitionReader().addRelationships(em);
 		
 		// assert
 		assertEquals("should have relation", 1, add.relations.size());
@@ -105,7 +105,7 @@ public class JSONModelDefinitionParserTest {
 		EasyClass add = c2.get();
 		
 		// act
-		new JSONModelDefinitionParser().addRelationships(em);
+		new JSONModelDefinitionReader().addRelationships(em);
 		
 		// assert
 		assertEquals("should have relation", 1, add.relations.size());

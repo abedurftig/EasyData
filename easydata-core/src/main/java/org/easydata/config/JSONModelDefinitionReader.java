@@ -10,10 +10,10 @@ import org.easydata.model.EasyRelation;
 
 import static org.easydata.model.EasyRelation.RelationType;
 
-public class JSONModelDefinitionParser implements IModelDefinitionParser {
+public class JSONModelDefinitionReader implements IModelDefinitionReader {
 
 	@Override
-	public EasyModel parseModelDefinitions(File inputFolder) 
+	public EasyModel readAndParseModelDefinitions(File inputFolder) 
 			throws IllegalArgumentException, IOException {
 		
 		if (inputFolder.isFile()) {

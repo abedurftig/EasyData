@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
-import org.easydata.config.JSONModelDefinitionParser;
+import org.easydata.config.JSONModelDefinitionReader;
 import org.easydata.model.EasyModel;
 import org.junit.Test;
 
@@ -24,7 +24,7 @@ public class EasyPojoGeneratorTest {
 		String in = Paths.get("src/test/resources/json/").toAbsolutePath().toString();
 		File inFile = new File(in);
 		try {
-			MODEL = new JSONModelDefinitionParser().parseModelDefinitions(inFile);
+			MODEL = new JSONModelDefinitionReader().readAndParseModelDefinitions(inFile);
 		} catch (IllegalArgumentException | IOException e) {
 			e.printStackTrace();
 		}

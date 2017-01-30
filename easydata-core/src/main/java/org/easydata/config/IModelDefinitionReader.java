@@ -5,9 +5,9 @@ import java.io.IOException;
 
 import org.easydata.model.EasyModel;
 
-public interface IModelDefinitionParser {
+public interface IModelDefinitionReader {
 
-	public EasyModel parseModelDefinitions(File inputFolder) 
+	public EasyModel readAndParseModelDefinitions(File inputFolder) 
 			throws IllegalArgumentException, IOException;
 	
 }

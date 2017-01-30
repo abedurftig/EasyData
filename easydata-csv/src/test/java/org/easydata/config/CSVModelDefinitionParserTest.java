@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
-import org.easydata.config.CSVModelDefinitionParser;
-import org.easydata.config.IModelDefinitionParser;
+import org.easydata.config.CSVModelDefinitionReader;
+import org.easydata.config.IModelDefinitionReader;
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyModel;
 import org.junit.AfterClass;
@@ -33,8 +33,8 @@ public class CSVModelDefinitionParserTest {
 	@Test
 	public void parseCSV() throws IllegalArgumentException, IOException {
 		
-		IModelDefinitionParser parser = new CSVModelDefinitionParser();
-		EasyModel model = parser.parseModelDefinitions(new File(path));
+		IModelDefinitionReader parser = new CSVModelDefinitionReader();
+		EasyModel model = parser.readAndParseModelDefinitions(new File(path));
 		assertEquals("Expected different number of classes", 2, model.classes.size());
 		
 		EasyClass emClass = model.getClassByName("employee");

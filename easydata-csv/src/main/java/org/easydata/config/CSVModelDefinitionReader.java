@@ -9,14 +9,15 @@ import java.io.IOException;
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyField;
 import org.easydata.model.EasyModel;
+import org.easydata.util.CSVFileUtil;
 import org.easydata.util.FileFilters;
 
-public class CSVModelDefinitionParser implements IModelDefinitionParser {
+public class CSVModelDefinitionReader implements IModelDefinitionReader {
 
 	private static final String _SEPERATOR = ",";
 	
 	@Override
-	public EasyModel parseModelDefinitions(File inputFolder) 
+	public EasyModel readAndParseModelDefinitions(File inputFolder) 
 			throws IllegalArgumentException, IOException {
 		
 		if (inputFolder.isFile()) {
@@ -36,7 +37,7 @@ public class CSVModelDefinitionParser implements IModelDefinitionParser {
 	
 	private void createClassFromCSVFile(File csvFile, EasyModel model) throws IOException {
 		
-		String header = readFirstLine(csvFile);
+		String header = readHeader(csvFile);
 		String[] headerNames = header.split(_SEPERATOR);
 		
 		EasyClass clazz = new EasyClass();
@@ -59,25 +60,17 @@ public class CSVModelDefinitionParser implements IModelDefinitionParser {
 		
 	}
 	
-	private String readFirstLine(File file) throws IOException {
+	private String readHeader(File file) throws IOException {
         
-		String result = null;
-		BufferedReader reader = null;
+		CSVFileUtil csvUtil = new CSVFileUtil(file); 
+		return csvUtil.readLineAt(0);
 		
-		try {
-			
-			reader = new BufferedReader(new FileReader(file));
-            result = reader.readLine();
-			
-        } finally {
-        	
-        	if (reader != null) {
-        		reader.close();
-        	}
-        	
-        } 
-		
-		return result;
+    }
+	
+	private String readFirstDataRow(File file) throws IOException {
+        
+		CSVFileUtil csvUtil = new CSVFileUtil(file); 
+		return csvUtil.readLineAt(1);
 		
     }
 

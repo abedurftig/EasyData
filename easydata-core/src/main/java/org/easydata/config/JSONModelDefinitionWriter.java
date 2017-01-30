@@ -9,10 +9,10 @@ import org.easydata.model.EasyClass;
 import org.easydata.model.EasyModel;
 import org.easydata.util.EasyObjectMapper;
 
-public class JSONModelDefinitionFactory implements IModelDefinitionFactory {
+public class JSONModelDefinitionWriter implements IModelDefinitionWriter {
 
 	@Override
-	public void createModelDefinitions(EasyModel model, File targetDir) 
+	public void writeOutModelDefinition(EasyModel model, File targetDir) 
 			throws IOException, IllegalArgumentException {
 		
 		if (targetDir.isFile()) {
