@@ -1,0 +1,30 @@
+{
+  "fileName" : "Address.csv",
+  "targetClassName" : "Address",
+  "fields" : [ {
+    "index" : 3,
+    "key" : false,
+    "targetFieldName" : "ZipCode",
+    "type" : "int"
+  }, {
+    "index" : 4,
+    "key" : false,
+    "targetFieldName" : "City",
+    "type" : "text"
+  }, {
+    "index" : 2,
+    "key" : false,
+    "targetFieldName" : "Number",
+    "type" : "int"
+  }, {
+    "index" : 1,
+    "key" : false,
+    "targetFieldName" : "Street",
+    "type" : "text"
+  }, {
+    "index" : 0,
+    "key" : false,
+    "targetFieldName" : "PublicId",
+    "type" : "text"
+  } ]
+}
