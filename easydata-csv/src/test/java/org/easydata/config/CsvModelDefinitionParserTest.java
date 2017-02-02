@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
-import org.easydata.config.CSVModelDefinitionReader;
+import org.easydata.config.CsvModelDefinitionReader;
 import org.easydata.config.IModelDefinitionReader;
 import org.easydata.model.EasyClass;
 import org.easydata.model.EasyModel;
@@ -15,10 +15,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class CSVModelDefinitionParserTest {
+public class CsvModelDefinitionParserTest {
 
 	private static String path = Paths.get(".").toAbsolutePath().normalize().toString() + 
-			"/src/test/resources/CSVModelDefinitionParserTest";
+			"/src/test/resources/CsvModelDefinitionParserTest";
 	
 	@BeforeClass
 	public static void mkDir() throws IOException {
@@ -33,7 +33,7 @@ public class CSVModelDefinitionParserTest {
 	@Test
 	public void parseCSV() throws IllegalArgumentException, IOException {
 		
-		IModelDefinitionReader parser = new CSVModelDefinitionReader();
+		IModelDefinitionReader parser = new CsvModelDefinitionReader();
 		EasyModel model = parser.readAndParseModelDefinitions(new File(path));
 		assertEquals("Expected different number of classes", 2, model.classes.size());
 		

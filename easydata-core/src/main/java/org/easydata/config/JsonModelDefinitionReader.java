@@ -10,7 +10,7 @@ import org.easydata.model.EasyRelation;
 
 import static org.easydata.model.EasyRelation.RelationType;
 
-public class JSONModelDefinitionReader implements IModelDefinitionReader {
+public class JsonModelDefinitionReader implements IModelDefinitionReader {
 
 	@Override
 	public EasyModel readAndParseModelDefinitions(File inputFolder) 

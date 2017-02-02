@@ -14,10 +14,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class CSVModelDefinitionDataTypeTest {
+public class CsvModelDefinitionDataTypeTest {
 
 	private static String path = Paths.get(".").toAbsolutePath().normalize().toString() + 
-			"/src/test/resources/CSVModelDefinitionDataTypeTest";
+			"/src/test/resources/CsvModelDefinitionDataTypeTest";
 	
 	@BeforeClass
 	public static void mkDir() throws IOException {
@@ -32,7 +32,7 @@ public class CSVModelDefinitionDataTypeTest {
 	@Test
 	public void parseCSV() throws IllegalArgumentException, IOException {
 		
-		IModelDefinitionReader parser = new CSVModelDefinitionReader();
+		IModelDefinitionReader parser = new CsvModelDefinitionReader();
 		EasyModel model = parser.readAndParseModelDefinitions(new File(path));
 		EasyClass clazz = model.getClassByName("Datatypes");
 		

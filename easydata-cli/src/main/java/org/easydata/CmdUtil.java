@@ -18,6 +18,9 @@ public class CmdUtil {
 	public static final String ARG_JSON = "json";
 	public static final String ARG_HELP = "help";
 	
+	public static final String ARG_CSV_ID_COL_NAME = "idColumn";
+	public static final String ARG_CSV_REF_SUFFIX = "refSuffix";
+	
 	private static CommandLine CMD = null; 
 	
 	public static CommandLine init(String[] args) throws ParseException {
@@ -58,6 +61,12 @@ public class CmdUtil {
 		
 		options.addOption(inputOption);
 		options.addOption(outputOption);
+		
+		Option csvIdOption = new Option(ARG_CSV_ID_COL_NAME, true, "use with csv: the common header name of the index column of a CSV file");
+		Option csvFkOption = new Option(ARG_CSV_REF_SUFFIX, true, "use with csv: the suffix in a header name which identifies a reference to another CSV file");
+		
+		options.addOption(csvIdOption);
+		options.addOption(csvFkOption);
 		
 		return options;
 		

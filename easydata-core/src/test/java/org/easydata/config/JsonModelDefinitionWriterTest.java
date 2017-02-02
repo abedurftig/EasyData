@@ -11,7 +11,7 @@ import org.easydata.model.EasyModel;
 import org.easydata.model.EasyType;
 import org.junit.Test;
 
-public class JSONModelDefinitionWriterTest {
+public class JsonModelDefinitionWriterTest {
 
 	private static String path = Paths.get(".").toAbsolutePath().normalize().toString() + 
 			"/src/test/resources/JSONModelDefinitionWriterTest";
@@ -45,7 +45,7 @@ public class JSONModelDefinitionWriterTest {
 		
 		EasyModel em = new EasyModelBuilder().create().withEasyClass(c1).get();
 		
-		JSONModelDefinitionWriter writer = new JSONModelDefinitionWriter();
+		JsonModelDefinitionWriter writer = new JsonModelDefinitionWriter();
 		writer.writeOutModelDefinition(em, new File(path));
 		
 	}

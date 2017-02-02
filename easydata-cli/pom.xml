@@ -10,7 +10,7 @@
 	<name>EasyData Cli</name>
 
 	<build>
-		<finalName>EasyData-Runnable</finalName>
+		<finalName>EasyData-Cli</finalName>
 		<plugins>
 			<!-- Maven Shade Plugin -->
 			<plugin>

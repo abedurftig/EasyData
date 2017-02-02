@@ -2,14 +2,14 @@
   "fileName" : "Address.csv",
   "targetClassName" : "Address",
   "fields" : [ {
-    "index" : 4,
-    "key" : false,
-    "targetFieldName" : "City",
-    "type" : "text"
-  }, {
     "index" : 3,
     "key" : false,
     "targetFieldName" : "ZipCode",
+    "type" : "int"
+  }, {
+    "index" : 2,
+    "key" : false,
+    "targetFieldName" : "Number",
     "type" : "int"
   }, {
     "index" : 1,
@@ -22,9 +22,9 @@
     "targetFieldName" : "PublicId",
     "type" : "text"
   }, {
-    "index" : 2,
+    "index" : 4,
     "key" : false,
-    "targetFieldName" : "Number",
-    "type" : "int"
+    "targetFieldName" : "City",
+    "type" : "text"
   } ]
 }

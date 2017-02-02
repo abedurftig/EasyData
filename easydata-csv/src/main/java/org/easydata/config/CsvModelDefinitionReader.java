@@ -14,7 +14,7 @@ import org.easydata.model.EasyType;
 import org.easydata.util.CSVFileUtil;
 import org.easydata.util.FileFilters;
 
-public class CSVModelDefinitionReader implements IModelDefinitionReader {
+public class CsvModelDefinitionReader implements IModelDefinitionReader {
 
 	private static final String _SEPERATOR = ",";
 	

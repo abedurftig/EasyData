@@ -11,7 +11,7 @@ import org.easydata.model.EasyModel;
 import org.easydata.model.EasyType;
 import org.junit.Test;
 
-public class JSONModelDefinitionReaderTest {
+public class JsonModelDefinitionReaderTest {
 
 	private static String path = Paths.get(".").toAbsolutePath().normalize().toString() + 
 			"/src/test/resources/JSONModelDefinitionReaderTest/";
@@ -19,7 +19,7 @@ public class JSONModelDefinitionReaderTest {
 	@Test
 	public void parseEmployee() throws IllegalArgumentException, IOException {
 		
-		JSONModelDefinitionReader parser = new JSONModelDefinitionReader();
+		JsonModelDefinitionReader parser = new JsonModelDefinitionReader();
 		EasyModel em = parser.readAndParseModelDefinitions(new File(path));
 		EasyClass ec = em.getClassByName("Employee");
 		

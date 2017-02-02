@@ -7,9 +7,9 @@
     "targetFieldName" : "DateOfBirth",
     "type" : "date"
   }, {
-    "index" : 1,
+    "index" : 0,
     "key" : false,
-    "targetFieldName" : "FirstName",
+    "targetFieldName" : "PublicId",
     "type" : "text"
   }, {
     "index" : 2,
@@ -22,9 +22,9 @@
     "targetFieldName" : "AddressID",
     "type" : "text"
   }, {
-    "index" : 0,
+    "index" : 1,
     "key" : false,
-    "targetFieldName" : "PublicId",
+    "targetFieldName" : "FirstName",
     "type" : "text"
   } ]
 }

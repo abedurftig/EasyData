@@ -9,7 +9,7 @@ import org.easydata.model.EasyClass;
 import org.easydata.model.EasyModel;
 import org.easydata.util.EasyObjectMapper;
 
-public class JSONModelDefinitionWriter implements IModelDefinitionWriter {
+public class JsonModelDefinitionWriter implements IModelDefinitionWriter {
 
 	@Override
 	public void writeOutModelDefinition(EasyModel model, File targetDir) 
