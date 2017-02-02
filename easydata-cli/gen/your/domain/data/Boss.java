@@ -14,50 +14,30 @@ public class Boss
     extends EasyPojo
 {
 
-    private String LastName;
-    private String FirstName;
+    private Date DateOfBirth;
     private String PublicId;
     private String AddressID;
-    private Date DateOfBirth;
+    private String LastName;
+    private String FirstName;
 
     /**
-     * Returns the LastName.
+     * Returns the DateOfBirth.
      * 
      * @return
-     *     LastName
+     *     DateOfBirth
      */
-    public String getLastName() {
-        return LastName;
+    public Date getDateOfBirth() {
+        return DateOfBirth;
     }
 
     /**
-     * Set the LastName.
+     * Set the DateOfBirth.
      * 
-     * @param LastName
-     *     the new LastName
+     * @param DateOfBirth
+     *     the new DateOfBirth
      */
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
-    }
-
-    /**
-     * Returns the FirstName.
-     * 
-     * @return
-     *     FirstName
-     */
-    public String getFirstName() {
-        return FirstName;
-    }
-
-    /**
-     * Set the FirstName.
-     * 
-     * @param FirstName
-     *     the new FirstName
-     */
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
+    public void setDateOfBirth(Date DateOfBirth) {
+        this.DateOfBirth = DateOfBirth;
     }
 
     /**
@@ -101,23 +81,43 @@ public class Boss
     }
 
     /**
-     * Returns the DateOfBirth.
+     * Returns the LastName.
      * 
      * @return
-     *     DateOfBirth
+     *     LastName
      */
-    public Date getDateOfBirth() {
-        return DateOfBirth;
+    public String getLastName() {
+        return LastName;
     }
 
     /**
-     * Set the DateOfBirth.
+     * Set the LastName.
      * 
-     * @param DateOfBirth
-     *     the new DateOfBirth
+     * @param LastName
+     *     the new LastName
      */
-    public void setDateOfBirth(Date DateOfBirth) {
-        this.DateOfBirth = DateOfBirth;
+    public void setLastName(String LastName) {
+        this.LastName = LastName;
+    }
+
+    /**
+     * Returns the FirstName.
+     * 
+     * @return
+     *     FirstName
+     */
+    public String getFirstName() {
+        return FirstName;
+    }
+
+    /**
+     * Set the FirstName.
+     * 
+     * @param FirstName
+     *     the new FirstName
+     */
+    public void setFirstName(String FirstName) {
+        this.FirstName = FirstName;
     }
 
     public String getKeyValue() {

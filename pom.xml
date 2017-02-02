@@ -16,7 +16,7 @@
 		<module>easydata-core</module>
 		<module>easydata-csv</module>
 		<module>easydata-generator</module>
-		<module>easydata-assembly</module>
+		<module>easydata-cli</module>
 	</modules>
 
 	<dependencies>

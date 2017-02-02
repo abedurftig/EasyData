@@ -24,9 +24,9 @@ public class Repositories {
     public static void init(String path)
         throws IOException
     {
+        REPOS.put(Bosses.class, new Bosses());
         REPOS.put(Addresses.class, new Addresses());
         REPOS.put(Employees.class, new Employees());
-        REPOS.put(Bosses.class, new Bosses());
         Iterator<EasyRepository<?>> iter = REPOS.values().iterator();
         while (iter.hasNext()) {
             EasyRepository<?> repo = iter.next();
